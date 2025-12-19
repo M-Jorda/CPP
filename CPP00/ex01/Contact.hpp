@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 06:24:39 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/18 18:18:28 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/19 15:24:31 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class	Contact
 {
 	private:
+
 		std::string	_firstName;
 		std::string	_lastName;
 		std::string	_nickName;
@@ -26,12 +27,11 @@ class	Contact
 		long		_number;
 
 	public:
-		Contact(void);
-		Contact(std::string fName, std::string lName, std::string nName,
-			std::string dSecret, int num);
-		
+		Contact();
+		Contact(const Contact &other);
+		Contact &operator=(const Contact &other);
 		~Contact(void);
-		
+
 		std::string	getFirstName(void)		const;
 		std::string	getLastName(void)		const;
 		std::string	getNickName(void)		const;

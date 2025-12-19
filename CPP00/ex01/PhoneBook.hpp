@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 19:31:56 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/19 12:08:23 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/19 15:35:31 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ class	PhoneBook
 
 	public:
 		PhoneBook(void);
-
+		PhoneBook(const PhoneBook &other);
+		PhoneBook &operator=(const PhoneBook &other);
 		~PhoneBook(void);
 
 		Contact	getContact(int index)	const;

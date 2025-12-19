@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 19:36:44 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/19 12:04:20 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/19 15:39:01 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,30 @@
 //                                  (DE)CONST
 
 PhoneBook::PhoneBook(void) : _contactCount(0), _oldest(0)
+{}
+
+PhoneBook::PhoneBook(const PhoneBook &other)
 {
+	for (int i = 0; i < 8; i++)
+		_contact[i] = other._contact[i];
+	_contactCount = other._contactCount;
+	_oldest = other._oldest;
+}
+
+PhoneBook &PhoneBook::operator=(const PhoneBook &other)
+{
+	if (this != &other)
+	{
+		for (int i = 0; i < 8; i++)
+			_contact[i] = other._contact[i];
+		_contactCount = other._contactCount;
+		_oldest = other._oldest;
+	}
+	return (*this);
 }
 
 PhoneBook::~PhoneBook(void)
-{
-}
+{}
 
 //                                   GETTER
 
