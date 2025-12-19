@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.hpp                                        :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 06:24:39 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/11 06:51:25 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/18 18:18:28 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,29 @@ class	Contact
 {
 	private:
 		std::string	_firstName;
-		std::string	_secondName;
+		std::string	_lastName;
 		std::string	_nickName;
 		std::string	_darkestSecret;
-		int			_number;
+		long		_number;
 
 	public:
 		Contact(void);
+		Contact(std::string fName, std::string lName, std::string nName,
+			std::string dSecret, int num);
 		
 		~Contact(void);
 		
 		std::string	getFirstName(void)		const;
-		std::string	getSecondName(void)		const;
+		std::string	getLastName(void)		const;
 		std::string	getNickName(void)		const;
 		std::string	getDarkestSecret(void)	const;
-		int			getNumber(void)			const;
+		long			getNumber(void)			const;
 
 		void		setFirstName(std::string firstName);
-		void		setSecondName(std::string secondName);
+		void		setLastName(std::string lastName);
 		void		setNickName(std::string nickName);
 		void		setDarkestSecret(std::string darkestSecret);
-		void		setNumber(int number);
-		
-		void		displayInfo(void) const;
-		
+		void		setNumber(long number);		
 };
 
 #endif

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 06:35:56 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/11 06:53:25 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/18 18:18:28 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contact.hpp"
+#include "Contact.hpp"
 
 //                                  (DE)CONST
 
-Contact::Contact(void) : _firstName(""), _secondName(""), _nickName(""),
-	_darkestSecret(""), _number(0)
+Contact::Contact(void) : _firstName(""), _lastName(""), _nickName(""),
+	_darkestSecret(""), _number(0L)
 {
-	std::cout << "Contact created" << std::endl;
+	// std::cout << "Contact created" << std::endl;
 }
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact replaced" << std::endl;
+	// std::cout << "Contact replaced" << std::endl;
 }
 
 //                                   GETTER
@@ -32,9 +32,9 @@ std::string Contact::getFirstName(void) const
 	return (_firstName);
 }
 
-std::string	Contact::getSecondName(void) const
+std::string	Contact::getLastName(void) const
 {
-	return (_secondName);
+	return (_lastName);
 }
 
 std::string	Contact::getNickName(void) const
@@ -47,7 +47,7 @@ std::string	Contact::getDarkestSecret(void) const
 	return (_darkestSecret);
 }
 
-int	Contact::getNumber(void) const
+long	Contact::getNumber(void) const
 {
 	return (_number);
 }
@@ -59,9 +59,9 @@ void	Contact::setFirstName(std::string firstName)
 	_firstName = firstName;
 }
 
-void	Contact::setSecondName(std::string secondName)
+void	Contact::setLastName(std::string lastName)
 {
-	_secondName = secondName;
+	_lastName = lastName;
 }
 
 void	Contact::setNickName(std::string nickName)
@@ -74,12 +74,7 @@ void	Contact::setDarkestSecret(std::string darkestSecret)
 	_darkestSecret = darkestSecret;
 }
 
-void	Contact::setNumber(int number)
+void	Contact::setNumber(long number)
 {
 	_number = number;
-}
-
-void	displayInfo(void) const
-{
-	std::cout
 }
