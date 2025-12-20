@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 06:35:56 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/18 18:18:28 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/19 15:32:35 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,33 @@
 
 //                                  (DE)CONST
 
-Contact::Contact(void) : _firstName(""), _lastName(""), _nickName(""),
-	_darkestSecret(""), _number(0L)
+Contact::Contact(void)
+{}
+
+Contact::Contact(const Contact &other)
 {
-	// std::cout << "Contact created" << std::endl;
+	_firstName = other._firstName;
+	_lastName = other._lastName;
+	_nickName = other._nickName;
+	_darkestSecret = other._darkestSecret;
+	_number = other._number;
+}
+
+Contact &Contact::operator=(const Contact &other)
+{
+	if (this != &other)
+	{
+		_firstName = other._firstName;
+		_lastName = other._lastName;
+		_nickName = other._nickName;
+		_darkestSecret = other._darkestSecret;
+		_number = other._number;
+	}
+	return (*this);
 }
 
 Contact::~Contact(void)
-{
-	// std::cout << "Contact replaced" << std::endl;
-}
+{}
 
 //                                   GETTER
 
