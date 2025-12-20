@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/20 12:18:09 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/20 12:20:02 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/20 10:55:23 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/20 10:58:46 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef ZOMBIE_H
+# define ZOMBIE_H
 
-int	main(void)
-{
-	int	N = 4;
+# include <string>
+# include <iostream>
 
-	Zombie *horde = zombieHorde(N, "Foo");
-
-	for (int i = 0; i < N; i++)
-		horde[i].announce();
-	delete[] horde;
-}
+#endif

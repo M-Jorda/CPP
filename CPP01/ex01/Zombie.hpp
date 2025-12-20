@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/20 12:18:09 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/20 12:20:02 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/20 10:54:24 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/20 12:39:39 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
-int	main(void)
+# include "Zombie.h"
+
+class Zombie
 {
-	int	N = 4;
+	private:
+		std::string	_name;
 
-	Zombie *horde = zombieHorde(N, "Foo");
+	public:
+		Zombie(void);
+		Zombie(std::string name);
+		Zombie(const Zombie &other);
+		~Zombie();
+		
+		Zombie	&operator=(const Zombie &other);
+		void	announce(void);
+		void	setName(std::string name);
+};
 
-	for (int i = 0; i < N; i++)
-		horde[i].announce();
-	delete[] horde;
-}
+Zombie* zombieHorde( int N, std::string name );
+
+#endif
