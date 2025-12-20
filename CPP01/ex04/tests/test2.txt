@@ -1,0 +1,4 @@
+foo bar foo baz foo
+foobar foofoo foo
+This file has no match words here
+foo foo foo

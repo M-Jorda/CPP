@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 15:17:18 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/20 16:29:03 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/20 16:54:06 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ int	main(int argc, char **argv)
 		return (ft_err(ERROPEN));
 
 	std::string	content = ft_getContent(inputFile);
-	std::cout << content;
-
 	ft_replace(content, argv[2], argv[3]);
-	// std::cout << "content : " << content;
 
 	std::string outputFilename = argv[1];
 	outputFilename += FILE_EXT;
