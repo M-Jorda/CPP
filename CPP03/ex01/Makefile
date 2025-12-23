@@ -13,9 +13,11 @@
 NAME		= ScavTrap
 
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Wshadow -Iclap -Iscav \
+				-Iscav -Idiamond
 
-SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp
+SRCS		= main.cpp clap/ClapTrap.cpp scav/ScavTrap.cpp
+
 OBJS		= $(SRCS:.cpp=.o)
 
 all:		$(NAME)
@@ -34,4 +36,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re DiamondTrap

@@ -6,13 +6,13 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 17:35:52 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 08:26:30 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 10:27:03 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void) : ClapTrap("ScavTrap")
+ScavTrap::ScavTrap(void)
 {
 	std::cout << "Creation of standard ScavTrap ..." << std::endl;
 	_hitPoint = 100;
@@ -20,20 +20,21 @@ ScavTrap::ScavTrap(void) : ClapTrap("ScavTrap")
 	_attackDmg = 20;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap(std::string name)
 {
 	std::cout << "Creation of ScavTrap " << name << std::endl;
+	_name = name;
 	_hitPoint = 100;
 	_energyPoint = 50;
 	_attackDmg = 20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other._name)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
 	std::cout << "Creation of a copy of " << other._name << std::endl;
-	_hitPoint = 100;
-	_energyPoint = 50;
-	_attackDmg = 20;
+	_hitPoint = other._hitPoint;
+	_energyPoint = other._energyPoint;
+	_attackDmg = other._attackDmg;
 }
 
 ScavTrap::~ScavTrap(void)
@@ -64,7 +65,7 @@ void		ScavTrap::attack(const std::string& target)
 		_energyPoint -= 1;
 	}
 	else
-		std::cout << "ScavTrap " << _name <<" doesn't have enought energy to attack." << std::endl;
+		std::cout << "ScavTrap " << _name <<" doesn't have enough energy to attack." << std::endl;
 }
 
 void 		ScavTrap::guardGate()
@@ -74,6 +75,6 @@ void 		ScavTrap::guardGate()
 		_energyPoint -= 1;
 	}
 	else
-		std::cout << "ScavTrap " << _name <<" doesn't have enought energy to keep the gate." << std::endl;
+		std::cout << "ScavTrap " << _name <<" doesn't have enough energy to keep the gate." << std::endl;
 }
 
