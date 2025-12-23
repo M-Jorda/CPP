@@ -1,3 +1,0 @@
-hello world hello world hello
-this is a simple test file
-hello hello hello
