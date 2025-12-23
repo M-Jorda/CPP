@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/22 15:24:16 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/22 18:38:01 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 08:42:54 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 08:45:07 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef DIAMONDTRAP_H
+# define DIAMONDTRAP_H
 
-# include "ScavTrap.h"
-
-class ScavTrap : public ClapTrap
-{
-	public :
-		ScavTrap(void);
-		ScavTrap(std::string name);
-		ScavTrap(const ScavTrap &other);
-		~ScavTrap(void);
-
-		ScavTrap	&operator=(const ScavTrap &other);
-		void		attack(const std::string& target);
-		void 		guardGate();
-};
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
 
 #endif

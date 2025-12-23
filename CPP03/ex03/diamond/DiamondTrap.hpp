@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 18:40:49 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/22 15:23:21 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 08:43:38 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 10:04:17 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
 
-# include "ClapTrap.h"
+# include "DiamondTrap.h"
 
-class ClapTrap
+class DiamondTrap : public FragTrap, public ScavTrap
 {
-	protected:
+	private :
 		std::string	_name;
-		int			_hitPoint;
-		int			_energyPoint;
-		int			_attackDmg;
 
-	public:
-		ClapTrap(void);
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap &other);
-		~ClapTrap(void);
+	public :
+		DiamondTrap(void);
+		DiamondTrap(std::string name);
+		DiamondTrap(const DiamondTrap &other);
+		~DiamondTrap(void);
 
-		ClapTrap	&operator=(const ClapTrap &other);
-		void		attack(const std::string& target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
+		DiamondTrap	&operator=(const DiamondTrap &other);
+		void		attack(const std::string &target);
+		void		whoAmI();
 };
 
 #endif
