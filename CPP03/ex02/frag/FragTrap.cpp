@@ -6,21 +6,13 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 08:18:44 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 08:31:19 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 10:27:03 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(void) : ClapTrap("FragTrap")
-{
-	std::cout << "Creation of standard FragTrap ..." << std::endl;
-	_hitPoint = 100;
-	_energyPoint = 100;
-	_attackDmg = 30;
-}
-
-FragTrap::FragTrap(const std::string name) : ClapTrap(name)
+FragTrap::FragTrap(void)
 {
 	std::cout << "Creation of FragTrap ..." << std::endl;
 	_hitPoint = 100;
@@ -28,12 +20,21 @@ FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 	_attackDmg = 30;
 }
 
-FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other._name)
+FragTrap::FragTrap(const std::string name)
 {
-	std::cout << "Creation of a copy of " << other._name << std::endl;
+	std::cout << "Creation of FragTrap ..." << std::endl;
+	_name = name;
 	_hitPoint = 100;
 	_energyPoint = 100;
 	_attackDmg = 30;
+}
+
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
+{
+	std::cout << "Creation of a copy of " << other._name << std::endl;
+	_hitPoint = other._hitPoint;
+	_energyPoint = other._energyPoint;
+	_attackDmg = other._attackDmg;
 }
 
 FragTrap::~FragTrap(void)
@@ -61,5 +62,5 @@ void		FragTrap::highFivesGuys(void)
 		_energyPoint -= 1;
 	}
 	else
-		std::cout << "FragTrap " << _name <<" doesn't have enought energy to high-fives." << std::endl;
+		std::cout << "FragTrap " << _name <<" doesn't have enough energy to high-fives." << std::endl;
 }

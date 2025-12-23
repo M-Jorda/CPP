@@ -13,9 +13,9 @@
 NAME		= FragTrap
 
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iclap -Iscav -Ifrag
 
-SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRCS		= main.cpp clap/ClapTrap.cpp scav/ScavTrap.cpp frag/FragTrap.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all:		$(NAME)
