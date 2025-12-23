@@ -6,13 +6,13 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 11:37:26 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 11:37:52 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 12:16:27 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAT_H
 # define CAT_H
 
-# include "Animal.h"
+# include "../Animal/Animal.hpp"
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 11:37:56 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 11:38:03 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 13:40:39 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_H
 # define DOG_H
 
-# include "Animal.h"
+# include "../Animal/Animal.hpp"
 
 #endif

@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 12:15:04 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 13:45:44 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 14:03:52 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 14:04:41 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-# include "Dog.h"
+# include "WrongCat.h"
 
-class Dog : public Animal
+class WrongCat : public WrongAnimal
 {
 	private :
 		std::string	_name;
 
 	public :
-		Dog(void);
-		Dog(std::string name);
-		Dog(const Dog &other);
-		~Dog(void);
+		WrongCat(void);
+		WrongCat(std::string name);
+		WrongCat(const WrongCat &other);
+		~WrongCat(void);
 
-		Dog		&operator=(const Dog &other);
-		void	makeSound() const;
+		WrongCat	&operator=(const WrongCat &other);
+		void		makeSound()							const;
 };
 
 #endif

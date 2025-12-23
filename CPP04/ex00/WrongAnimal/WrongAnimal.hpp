@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 12:15:04 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 13:45:44 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 13:54:32 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 13:59:24 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
-# include "Dog.h"
+# include "WrongAnimal.h"
 
-class Dog : public Animal
+class WrongAnimal
 {
-	private :
-		std::string	_name;
+	protected :
+		std::string	_type;
 
 	public :
-		Dog(void);
-		Dog(std::string name);
-		Dog(const Dog &other);
-		~Dog(void);
+		WrongAnimal(void);
+		WrongAnimal(std::string type);
+		WrongAnimal(const WrongAnimal &other);
+		~WrongAnimal(void);
 
-		Dog		&operator=(const Dog &other);
-		void	makeSound() const;
+		WrongAnimal	&operator=(const WrongAnimal &other);
+		void		makeSound(void)							const;
+		std::string	getType(void)							const;
 };
 
 #endif

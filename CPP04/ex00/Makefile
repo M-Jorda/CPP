@@ -3,7 +3,8 @@ NAME		= Polymorphism
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iheader
 
-SRCS		= main.cpp Animal/Animal.cpp Animal/Cat/Cat.cpp Animal/Dog/Dog.cpp
+SRCS		= main.cpp Animal/Animal.cpp Animal/Cat/Cat.cpp Animal/Dog/Dog.cpp	\
+				WrongAnimal/WrongAnimal.cpp WrongAnimal/WrongCat/WrongCat.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all:		$(NAME)
