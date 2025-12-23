@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 12:32:40 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 13:45:35 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 12:15:04 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 16:11:39 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 
-# include "Cat.h"
+# include "Dog.h"
 
-class Cat : public Animal
+class Dog : public Animal
 {
 	private :
 		std::string	_name;
+		Brain		*_brain;
 
 	public :
-		Cat(void);
-		Cat(std::string name);
-		Cat(const Cat &other);
-		~Cat(void);
+		Dog(void);
+		Dog(std::string name);
+		Dog(const Dog &other);
+		~Dog(void);
 
-		Cat		&operator=(const Cat &other);
+		Dog		&operator=(const Dog &other);
 		void	makeSound() const;
 };
 

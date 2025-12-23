@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongWrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 12:19:06 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 16:25:46 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 14:06:27 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 14:06:40 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
-Dog::Dog(void) : Animal("Dog"), _name("Rex")
+WrongCat::WrongCat(void) : WrongAnimal("WrongCat"), _name("Mistigris")
 {
-	std::cout << "Dog default constructor called" << std::endl;
+	std::cout << "WrongCat default constructor called" << std::endl;
 }
 
-Dog::Dog(std::string name) : Animal("Dog"), _name(name)
+WrongCat::WrongCat(std::string name) : WrongAnimal("WrongCat"), _name(name)
 {
-	std::cout << "Dog name constructor called for " << name << std::endl;
+	std::cout << "WrongCat name constructor called for " << name << std::endl;
 }
 
-Dog::Dog(const Dog &other) : Animal(other), _name(other._name)
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other), _name(other._name)
 {
 	std::cout << "Creation of a copy of " << other._name << std::endl;
 }
 
-Dog::~Dog(void)
+WrongCat::~WrongCat(void)
 {
-	std::cout << "Dog destructor called for " << _name << std::endl;
+	std::cout << "WrongCat destructor called for " << _name << std::endl;
 }
 
-Dog	&Dog::operator=(const Dog &other)
+WrongCat		&WrongCat::operator=(const WrongCat &other)
 {
 	if (this != &other)
 	{
@@ -43,7 +43,7 @@ Dog	&Dog::operator=(const Dog &other)
 	return (*this);
 }
 
-void	Dog::makeSound() const
+void	WrongCat::makeSound() const
 {
-	std::cout << "The dog is barking ..." << std::endl;
+	std::cout << "The WrongCat is meowing ..." << std::endl;
 }

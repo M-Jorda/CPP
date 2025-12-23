@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.h                                           :+:      :+:    :+:   */
+/*   Brain.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 11:36:35 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 11:37:19 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 14:23:59 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 14:24:02 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_H
-# define ANIMAL_H
+#ifndef BRAIN_H
+# define BRAIN_H
 
-# include <string>
-# include <iostream>
+# include "Animal.h"
 
 #endif

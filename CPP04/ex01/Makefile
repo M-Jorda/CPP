@@ -1,10 +1,11 @@
-NAME		= Polymorphism
+NAME		= IDontWantToSetTheWorldOnFire
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iheader
 
 SRCS		= main.cpp Animal/Animal.cpp Animal/Cat/Cat.cpp Animal/Dog/Dog.cpp	\
-				WrongAnimal/WrongAnimal.cpp WrongAnimal/WrongCat/WrongCat.cpp
+				WrongAnimal/WrongAnimal.cpp WrongAnimal/WrongCat/WrongCat.cpp	\
+				Brain/Brain.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all:		$(NAME)

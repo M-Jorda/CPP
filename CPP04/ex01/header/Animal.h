@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Animal.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 12:15:04 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 13:45:44 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 11:36:35 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 16:06:29 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef ANIMAL_H
+# define ANIMAL_H
 
-# include "Dog.h"
+# include <string>
+# include <iostream>
 
-class Dog : public Animal
-{
-	private :
-		std::string	_name;
-
-	public :
-		Dog(void);
-		Dog(std::string name);
-		Dog(const Dog &other);
-		~Dog(void);
-
-		Dog		&operator=(const Dog &other);
-		void	makeSound() const;
-};
+# include "../Brain/Brain.hpp"
 
 #endif
