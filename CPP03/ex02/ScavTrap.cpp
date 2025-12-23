@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 17:35:52 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/22 18:39:21 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 08:26:30 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ void 		ScavTrap::guardGate()
 		_energyPoint -= 1;
 	}
 	else
-		std::cout << "ScavTrap " << _name <<" doesn't have enought energy to attack." << std::endl;
+		std::cout << "ScavTrap " << _name <<" doesn't have enought energy to keep the gate." << std::endl;
 }
 
