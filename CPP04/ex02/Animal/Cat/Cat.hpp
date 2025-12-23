@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 11:38:14 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 13:59:39 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 12:32:40 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 16:41:43 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
-# include "Animal.h"
+# include "Cat.h"
 
-class Animal
+class Cat : public Animal
 {
-	protected :
-		std::string	_type;
+	private :
+		std::string	_name;
+		Brain		*_brain;
 
 	public :
-		Animal(void);
-		Animal(std::string type);
-		Animal(const Animal &other);
-		virtual ~Animal(void);
+		Cat(void);
+		Cat(std::string name);
+		Cat(const Cat &other);
+		virtual ~Cat(void);
 
-		Animal 			&operator=(const Animal &other);
-		virtual void	makeSound()							const;
-		std::string		getType(void)						const;
+		Cat				&operator=(const Cat &other);
+		virtual void	makeSound()						const;
 };
 
 #endif

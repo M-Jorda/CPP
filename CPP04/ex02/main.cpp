@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 12:39:54 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 16:25:46 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 16:45:38 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,27 @@
 
 int main()
 {
-	std::cout << "=== TEST 1: Basic allocation and deletion ===" << std::endl;
+	std::cout << "=== TEST 1: Abstract class - Cannot instantiate Animal ===" << std::endl;
+	std::cout << "Trying to create: Animal a;" << std::endl;
+	std::cout << "Result: COMPILATION ERROR - Animal is abstract!" << std::endl;
+	std::cout << "        (Animal has pure virtual method: makeSound() = 0)" << std::endl;
+	// Animal a;  // ❌ WOULD NOT COMPILE
+
+	std::cout << std::endl << "=== TEST 2: Can only instantiate concrete classes ===" << std::endl;
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	
 	std::cout << std::endl << "--- Types and sounds ---" << std::endl;
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
+	std::cout << j->getType() << " ";
 	j->makeSound();
+	std::cout << i->getType() << " ";
 	i->makeSound();
 	
 	std::cout << std::endl << "--- Cleanup ---" << std::endl;
 	delete j; // should not create a leak
 	delete i;
 
-	std::cout << std::endl << "=== TEST 2: Array of Animals (half Dogs, half Cats) ===" << std::endl;
+	std::cout << std::endl << "=== TEST 3: Array of Animals (half Dogs, half Cats) ===" << std::endl;
 	const int arraySize = 10;
 	Animal* animals[arraySize];
 
@@ -42,7 +48,7 @@ int main()
 	for (int idx = arraySize / 2; idx < arraySize; idx++)
 		animals[idx] = new Cat();
 
-	std::cout << std::endl << "--- Making sounds ---" << std::endl;
+	std::cout << std::endl << "--- Making sounds (polymorphism through abstract class) ---" << std::endl;
 	for (int idx = 0; idx < arraySize; idx++)
 	{
 		std::cout << animals[idx]->getType() << ": ";
@@ -53,18 +59,20 @@ int main()
 	for (int idx = 0; idx < arraySize; idx++)
 		delete animals[idx];
 
-	std::cout << std::endl << "=== TEST 3: Deep copy test (Copy constructor) ===" << std::endl;
-	Dog originalDog;
-	std::cout << std::endl << "--- Creating copy ---" << std::endl;
-	Dog copyDog = originalDog;
-	
-	std::cout << std::endl << "--- Both dogs making sound ---" << std::endl;
-	originalDog.makeSound();
-	copyDog.makeSound();
+	std::cout << std::endl << "=== TEST 4: Deep copy test (Copy constructor) ===" << std::endl;
+	{
+		Dog originalDog;
+		std::cout << std::endl << "--- Creating copy ---" << std::endl;
+		Dog copyDog = originalDog;
+		
+		std::cout << std::endl << "--- Both dogs making sound ---" << std::endl;
+		originalDog.makeSound();
+		copyDog.makeSound();
+		
+		std::cout << std::endl << "--- Destructors (leaving scope) ---" << std::endl;
+	}
 
-	std::cout << std::endl << "--- Destructors will be called ---" << std::endl;
-
-	std::cout << std::endl << "=== TEST 4: Deep copy test (Assignment operator) ===" << std::endl;
+	std::cout << std::endl << "=== TEST 5: Deep copy test (Assignment operator) ===" << std::endl;
 	{
 		Dog dog1;
 		Dog dog2;
@@ -79,7 +87,7 @@ int main()
 		std::cout << std::endl << "--- Destructors (leaving scope) ---" << std::endl;
 	}
 
-	std::cout << std::endl << "=== TEST 5: Cat deep copy tests ===" << std::endl;
+	std::cout << std::endl << "=== TEST 6: Cat deep copy tests ===" << std::endl;
 	{
 		Cat cat1;
 		Cat cat2 = cat1; // Copy constructor
