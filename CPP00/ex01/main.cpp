@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2025/12/19 15:33:18 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/01/13 17:43:43 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ std::string	ft_add_champ(std::string field)
 	{
 		ft_print(field);
 		if (!std::getline(std::cin, str))
-			return ("");
+			exit(1);
 		if (!str.empty())
 			break ;
 		ft_print("Every field must be filled.\n");
+		
 	}
 	return (str);
 }

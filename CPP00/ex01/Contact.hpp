@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 06:24:39 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/19 15:24:31 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/01/13 16:27:49 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class	Contact
 		std::string	_nickName;
 		std::string	_darkestSecret;
 		long		_number;
-
+		
 	public:
 		Contact();
 		Contact(const Contact &other);

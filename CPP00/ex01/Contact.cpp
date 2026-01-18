@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 06:35:56 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/19 15:32:35 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/01/13 16:27:24 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 //                                  (DE)CONST
 
-Contact::Contact(void)
-{}
+Contact::Contact(void) {}
 
-Contact::Contact(const Contact &other)
+Contact::Contact(const Contact& other)
 {
 	_firstName = other._firstName;
 	_lastName = other._lastName;
