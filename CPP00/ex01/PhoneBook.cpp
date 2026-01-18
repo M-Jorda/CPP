@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 19:36:44 by jjorda            #+#    #+#             */
-/*   Updated: 2026/01/13 16:22:17 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/01/18 17:27:47 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	PhoneBook::getOldest(void)	const
 
 void	PhoneBook::SetContact(Contact contact)
 {
-	if (_contactCount == 2)
+	if (_contactCount == 8)
 	{
 		_contact[_oldest] = contact;
 		_oldest++;
-		if (_oldest == 2)
+		if (_oldest == 8)
 			_oldest = 0;
 		// for (int i = 0; i < 7; i++)
 		// 	_contact[i] = _contact[i + 1];

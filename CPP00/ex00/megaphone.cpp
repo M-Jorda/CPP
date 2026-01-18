@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/01/13 16:16:19 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/01/18 17:27:17 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	main(int argc, char **argv)
 				c -= 32;
 			std::cout << c;
 		}
-		if (argv[i + 1])
-			std::cout << " ";
 	}
 	
 	std::cout << std::endl;

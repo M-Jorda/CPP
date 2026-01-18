@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 12:12:09 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/19 15:02:13 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/01/18 17:29:26 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ Account::Account(int initial_deposit)
 	std::cout << " index:" << _accountIndex;
 	std::cout << ";amount:" << _amount;
 	std::cout << ";created" << std::endl;
+	_totalAmount += _amount;
 }
 
 Account::Account()
@@ -40,6 +41,7 @@ Account::~Account()
 	std::cout << " index:" << _accountIndex;
 	std::cout << ";amount:" << _amount;
 	std::cout << ";closed" << std::endl;
+	_totalAmount += _amount;
 	_nbAccounts--;
 }
 
@@ -126,6 +128,6 @@ void	Account::_displayTimestamp(void)
 	
 	now = time(NULL);
 	timeinfo = localtime(&now);
-	strftime(buff, sizeof(buff), "[%Y-%m-%d %H:%M:%S]", timeinfo);
+	strftime(buff, sizeof(buff), "[%Y%m%d_%H%M%S]", timeinfo);
 	std::cout << buff;
 }

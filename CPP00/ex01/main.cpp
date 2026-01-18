@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2026/01/13 17:43:43 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/01/18 17:28:21 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ft_search(PhoneBook &pb)
 		}
 		std::stringstream ss(input);
 		// index = atoi(input.c_str());
-		if ((ss >> index) && ss.eof() && index < pb.getContactCount())
+		if ((ss >> index) && ss.eof() && index >= 0 && index < pb.getContactCount())
 		{
 			pb.displayInfo(index);
 			break ;
