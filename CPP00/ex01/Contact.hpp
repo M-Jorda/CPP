@@ -24,7 +24,7 @@ class	Contact
 		std::string	_lastName;
 		std::string	_nickName;
 		std::string	_darkestSecret;
-		long		_number;
+		std::string	_phoneNumber;
 		
 	public:
 		Contact();
@@ -36,13 +36,13 @@ class	Contact
 		std::string	getLastName(void)		const;
 		std::string	getNickName(void)		const;
 		std::string	getDarkestSecret(void)	const;
-		long			getNumber(void)			const;
+		std::string	getPhoneNumber(void)	const;
 
 		void		setFirstName(std::string firstName);
 		void		setLastName(std::string lastName);
 		void		setNickName(std::string nickName);
 		void		setDarkestSecret(std::string darkestSecret);
-		void		setNumber(long number);		
+		void		setPhoneNumber(std::string phoneNumber);		
 };
 
 #endif

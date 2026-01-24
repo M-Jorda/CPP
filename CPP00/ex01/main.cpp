@@ -34,40 +34,20 @@ std::string	ft_add_champ(std::string field)
 	return (str);
 }
 
-long	ft_add_number()
+std::string	ft_add_number()
 {
 	std::string	num;
-	bool		valid;
-	size_t		i;
-	long		phoneNum;
-	std::stringstream	ss;
 
 	while (1)
 	{
-		valid = true;
 		ft_print("Phone number: ");
 		if (!std::getline(std::cin, num))
-			return (0);
-		if (num.empty())
-			valid = false;
-		for (i = 0; i < num.length(); i++)
-			if (!isdigit(num[i]))
-			{
-				valid = false;
-				break ;
-			}
-		if (valid)
-		{
-			ss.clear();
-			ss.str(num);
-			if (!(ss >> phoneNum))
-				valid = false;
-		}
-		if (valid)
+			exit(1);
+		if (!num.empty())
 			break ;
-		ft_print("The phone number can't be empty and must be only number.\n");
+		ft_print("The phone number can't be empty.\n");
 	}
-	return (phoneNum);
+	return (num);
 }
 
 Contact	ft_add_contact()
@@ -77,7 +57,7 @@ Contact	ft_add_contact()
 	contact.setFirstName(ft_add_champ("First name: "));
 	contact.setLastName(ft_add_champ("Last name: "));
 	contact.setNickName(ft_add_champ("Nickname: "));
-	contact.setNumber(ft_add_number());
+	contact.setPhoneNumber(ft_add_number());
 	contact.setDarkestSecret(ft_add_champ("Darkest secret: "));
 	return (contact);
 }

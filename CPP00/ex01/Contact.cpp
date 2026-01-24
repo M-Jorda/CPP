@@ -22,7 +22,7 @@ Contact::Contact(const Contact& other)
 	_lastName = other._lastName;
 	_nickName = other._nickName;
 	_darkestSecret = other._darkestSecret;
-	_number = other._number;
+	_phoneNumber = other._phoneNumber;
 }
 
 Contact &Contact::operator=(const Contact &other)
@@ -33,7 +33,7 @@ Contact &Contact::operator=(const Contact &other)
 		_lastName = other._lastName;
 		_nickName = other._nickName;
 		_darkestSecret = other._darkestSecret;
-		_number = other._number;
+		_phoneNumber = other._phoneNumber;
 	}
 	return (*this);
 }
@@ -63,9 +63,9 @@ std::string	Contact::getDarkestSecret(void) const
 	return (_darkestSecret);
 }
 
-long	Contact::getNumber(void) const
+std::string	Contact::getPhoneNumber(void) const
 {
-	return (_number);
+	return (_phoneNumber);
 }
 
 //                                   SETTER
@@ -90,7 +90,7 @@ void	Contact::setDarkestSecret(std::string darkestSecret)
 	_darkestSecret = darkestSecret;
 }
 
-void	Contact::setNumber(long number)
+void	Contact::setPhoneNumber(std::string phoneNumber)
 {
-	_number = number;
+	_phoneNumber = phoneNumber;
 }

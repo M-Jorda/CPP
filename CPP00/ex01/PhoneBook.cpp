@@ -92,9 +92,9 @@ void	PhoneBook::displayInfo(int index) const
 {
 	std::cout << "Index:		" << index << std::endl;
 	std::cout << "First name:	" << getContact(index).getFirstName() << std::endl;
-	std::cout << "Second name:	" << getContact(index).getLastName() << std::endl;
+	std::cout << "Last name:	" << getContact(index).getLastName() << std::endl;
 	std::cout << "Nickname:	" << getContact(index).getNickName() << std::endl;
-	std::cout << "Phone number:	" << getContact(index).getNumber() << std::endl;
+	std::cout << "Phone number:	" << getContact(index).getPhoneNumber() << std::endl;
 	std::cout << "Darkest secret:	" << getContact(index).getDarkestSecret() << std::endl;
 }
 
@@ -105,13 +105,13 @@ int	PhoneBook::displayContacts(void)
 		std::cout << "PhoneBook is empty." << std::endl;
 		return (0);
 	}
-	std::cout << "INDEX     |";
-	std::cout << "F_NAME    |";
-	std::cout << "S_NAME    |";
-	std::cout << "N_NAME    |" << std::endl;
+	std::cout << std::setw(10) << "INDEX" << "|";
+	std::cout << std::setw(10) << "FIRST NAME" << "|";
+	std::cout << std::setw(10) << "LAST NAME" << "|";
+	std::cout << std::setw(10) << "NICKNAME" << "|" << std::endl;
 	for (int i = 0; i < _contactCount; i++)
 	{
-		std::cout << i << "         |";
+		std::cout << std::setw(10) << i << "|";
 		std::cout << formatColumn(_contact[i].getFirstName()) << "|";
 		std::cout << formatColumn(_contact[i].getLastName()) << "|";
 		std::cout << formatColumn(_contact[i].getNickName()) << "|" << std::endl;
