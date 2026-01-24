@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 13:56:30 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/20 14:41:38 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/01/24 18:02:41 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class Weapon
 		Weapon(std::string type);
 		~Weapon(void);
 
-		std::string	&getType(void);
-		void		setType(std::string type);
+		const std::string	&getType(void) const;
+		void				setType(std::string type);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 10:55:27 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/20 12:39:39 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/01/24 17:47:38 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Zombie	&Zombie::operator=(const Zombie &other)
 
 void	Zombie::announce(void)
 {
-	std::cout << _name << ":  BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
 void	Zombie::setName(std::string name)
