@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 16:25:17 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/21 17:42:29 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/02/01 17:20:22 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static Fixed	ft_getArea(Point a, Point b, Point c)
 {
 	Fixed	aVector = (b.getX() - a.getX()) * (c.getY() - a.getY());
 	Fixed	bVector = (c.getX() - a.getX()) * (b.getY() - a.getY());
-	Fixed	res = (aVector - bVector) / 2;
+	Fixed	res = (aVector - bVector);
 	if (res < 0)
 		res = res * Fixed(-1);
 	return (res);

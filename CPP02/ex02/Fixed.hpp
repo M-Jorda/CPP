@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:29:21 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/21 15:25:46 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/02/01 17:24:02 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ class Fixed
 		float	toFloat(void) const;
 		int		toInt(void) const;
 
-		bool	operator>=(const Fixed &other);
-		bool	operator<=(const Fixed &other);
-		bool	operator==(const Fixed &other);
-		bool	operator!=(const Fixed &other);
-		bool	operator<(const Fixed &other);
-		bool	operator>(const Fixed &other);
-		Fixed	operator+(const Fixed &other);
-		Fixed	operator-(const Fixed &other);
-		Fixed	operator*(const Fixed &other);
-		Fixed	operator/(const Fixed &other);
+		bool	operator>=(const Fixed &other) const;
+		bool	operator<=(const Fixed &other) const;
+		bool	operator==(const Fixed &other) const;
+		bool	operator!=(const Fixed &other) const;
+		bool	operator<(const Fixed &other) const;
+		bool	operator>(const Fixed &other) const;
+		Fixed	operator+(const Fixed &other) const;
+		Fixed	operator-(const Fixed &other) const;
+		Fixed	operator*(const Fixed &other) const;
+		Fixed	operator/(const Fixed &other) const;
 		Fixed	&operator++(void);
 		Fixed	&operator--(void);
 		Fixed	operator++(int);

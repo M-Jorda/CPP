@@ -1,0 +1,123 @@
+Erreurs communes à tous les exercices                                                                                                        
+                                                                                                                                               
+  1. Syntaxe des includes incorrecte                                                                                                           
+  - Fichiers: Fixed.h (ex00, ex01, ex02, ex03)                                                                                                 
+  - Problème: #include "iostream" au lieu de #include <iostream>                                                                               
+  - Les headers système doivent utiliser les chevrons <>, pas les guillemets ""                                                                
+  - Cela s'applique aussi à "string" et "cmath"                                                                                                
+                                                                                                                                               
+  ---                                                                                                                                          
+  ex00: My First Class in Orthodox Canonical Form                                                                                              
+                                                                                                                                               
+  2. Message de l'operator= mal placé (ex00/Fixed.cpp:32-39)                                                                                   
+  Fixed &Fixed::operator=(const Fixed &other)                                                                                                  
+  {                                                                                                                                            
+      if (this != &other)                                                                                                                      
+      {                                                                                                                                        
+          _rawBits = other._rawBits;                                                                                                           
+          std::cout << ASSIGN << std::endl;  // <-- Mauvais placement                                                                          
+      }                                                                                                                                        
+      return (*this);                                                                                                                          
+  }                                                                                                                                            
+  - Le message est affiché après l'assignation et seulement si this != &other                                                                  
+  - Le pattern standard affiche le message au début de la fonction, avant toute logique                                                        
+  - Pourquoi c'est un problème: Si on fait a = a;, aucun message ne s'affiche, alors que la fonction a bien été appelée                        
+                                                                                                                                               
+  ---                                                                                                                                          
+  ex01: Towards a more useful fixed-point number class                                                                                         
+                                                                                                                                               
+  Pas d'erreur majeure (hormis les includes). La logique est correcte.                                                                         
+                                                                                                                                               
+  ---                                                                                                                                          
+  ex02: Now we're talking                                                                                                                      
+                                                                                                                                               
+  3. Messages de debug non supprimés (ex02/Fixed.cpp)                                                                                          
+  Fixed::Fixed(void)                                                                                                                           
+  {                                                                                                                                            
+      std::cout << DEFAULT << std::endl;  // <-- Devrait être supprimé                                                                         
+      _rawBits = 0;                                                                                                                            
+  }                                                                                                                                            
+  - Le sujet montre un output attendu sans messages de debug:                                                                                  
+  0                                                                                                                                            
+  0.00390625                                                                                                                                   
+  0.00390625                                                                                                                                   
+  0.00390625                                                                                                                                   
+  0.0078125                                                                                                                                    
+  10.1016                                                                                                                                      
+  10.1016                                                                                                                                      
+  - Ton code affiche encore tous les messages de constructeur/destructeur                                                                      
+  - Pourquoi c'est important: L'output ne correspondra pas au sujet                                                                            
+                                                                                                                                               
+  4. Opérateurs de comparaison non-const (ex02/Fixed.hpp:38-43)                                                                                
+  bool    operator>=(const Fixed &other);  // Devrait être const                                                                               
+  bool    operator<=(const Fixed &other);  // Devrait être const                                                                               
+  bool    operator==(const Fixed &other);  // Devrait être const                                                                               
+  bool    operator!=(const Fixed &other);  // Devrait être const                                                                               
+  bool    operator<(const Fixed &other);   // Devrait être const                                                                               
+  bool    operator>(const Fixed &other);   // Devrait être const                                                                               
+  - Ces méthodes ne modifient pas l'objet, elles doivent être const                                                                            
+  - Signature correcte: bool operator<(const Fixed &other) const;                                                                              
+  - Pourquoi c'est important: Si tu as un const Fixed a;, tu ne peux pas faire a < b car le compilateur refuse d'appeler une méthode non-const 
+  sur un objet const                                                                                                                           
+                                                                                                                                               
+  5. Opérateurs arithmétiques non-const (ex02/Fixed.hpp:44-47)                                                                                 
+  Fixed    operator+(const Fixed &other);  // Devrait être const                                                                               
+  Fixed    operator-(const Fixed &other);  // Devrait être const                                                                               
+  Fixed    operator*(const Fixed &other);  // Devrait être const                                                                               
+  Fixed    operator/(const Fixed &other);  // Devrait être const                                                                               
+  - Même problème: ces opérateurs ne modifient pas *this, ils retournent un nouvel objet                                                       
+                                                                                                                                               
+  6. Post-incrémentation utilise le mauvais constructeur (ex02/Fixed.cpp:151-157)                                                              
+  Fixed    Fixed::operator++(int)                                                                                                              
+  {                                                                                                                                            
+      Fixed    temp;                    // <-- Constructeur par défaut                                                                         
+      temp.setRawBits(this->_rawBits);                                                                                                         
+      this->_rawBits++;                                                                                                                        
+      return (temp);                                                                                                                           
+  }                                                                                                                                            
+  - Pattern idiomatique:                                                                                                                       
+  Fixed    Fixed::operator++(int)                                                                                                              
+  {                                                                                                                                            
+      Fixed temp(*this);  // <-- Constructeur de copie                                                                                         
+      this->_rawBits++;                                                                                                                        
+      return (temp);                                                                                                                           
+  }                                                                                                                                            
+  - Pourquoi c'est mieux: Plus clair, plus efficace, et le constructeur de copie fait exactement ce dont on a besoin                           
+                                                                                                                                               
+  ---                                                                                                                                          
+  ex03: BSP                                                                                                                                    
+                                                                                                                                               
+  7. operator= de Point est vide (ex03/Point.cpp:27-31)                                                                                        
+  Point    &Point::operator=(Point const &other)                                                                                               
+  {                                                                                                                                            
+      (void) other;                                                                                                                            
+      return (*this);                                                                                                                          
+  }                                                                                                                                            
+  - Problème: Les membres _x et _y sont const, donc ils ne peuvent pas être réassignés                                                         
+  - L'opérateur ne fait rien du tout (il ignore other)                                                                                         
+  - Ce n'est pas forcément une "erreur" car le sujet impose les membres const, mais c'est un operator= qui ment sur ce qu'il fait              
+                                                                                                                                               
+  8. Mêmes problèmes de const qu'ex02                                                                                                          
+  - Les opérateurs de comparaison et arithmétiques ne sont pas const                                                                           
+                                                                                                                                               
+  ---                                                                                                                                          
+  Résumé par priorité                                                                                                                          
+  ┌──────────┬──────────┬────────────────────────────────────────────────────────┐                                                             
+  │ Priorité │ Exercice │                         Erreur                         │                                                             
+  ├──────────┼──────────┼────────────────────────────────────────────────────────┤                                                             
+  │ HAUTE    │ ex02     │ Messages de debug non supprimés (output incorrect)     │                                                             
+  ├──────────┼──────────┼────────────────────────────────────────────────────────┤                                                             
+  │ HAUTE    │ ex02/03  │ Opérateurs de comparaison non-const                    │                                                             
+  ├──────────┼──────────┼────────────────────────────────────────────────────────┤                                                             
+  │ MOYENNE  │ ex02/03  │ Opérateurs arithmétiques non-const                     │                                                             
+  ├──────────┼──────────┼────────────────────────────────────────────────────────┤                                                             
+  │ MOYENNE  │ ex02/03  │ Post-incrémentation n'utilise pas le copy constructor  │                                                             
+  ├──────────┼──────────┼────────────────────────────────────────────────────────┤                                                             
+  │ BASSE    │ tous     │ Includes avec "" au lieu de <>                         │                                                             
+  ├──────────┼──────────┼────────────────────────────────────────────────────────┤                                                             
+  │ BASSE    │ ex00     │ Message operator= mal placé                            │                                                             
+  ├──────────┼──────────┼────────────────────────────────────────────────────────┤                                                             
+  │ INFO     │ ex03     │ operator= de Point est un no-op (contraint par design) │                                                             
+  └──────────┴──────────┴────────────────────────────────────────────────────────┘                                                             
+  ---                                                                                                                                          
+  L'erreur la plus critique est celle de ex02 avec les messages de debug - ton output ne correspondra pas du tout à celui attendu par le sujet.

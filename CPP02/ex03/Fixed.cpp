@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:34:53 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/21 17:46:29 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/02/01 17:21:50 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,51 +76,51 @@ std::ostream	&operator<<(std::ostream &os, const Fixed &fixed)
 	return (os);
 }
 
-bool	Fixed::operator>=(const Fixed &other)
+bool	Fixed::operator>=(const Fixed &other) const
 {
 	return (this->_rawBits >= other._rawBits);
 }
 
-bool	Fixed::operator<=(const Fixed &other)
+bool	Fixed::operator<=(const Fixed &other) const
 {
 	return (this->_rawBits <= other._rawBits);
 }
 
-bool	Fixed::operator==(const Fixed &other)
+bool	Fixed::operator==(const Fixed &other) const
 {
 	return (this->_rawBits == other._rawBits);
 }
 
-bool	Fixed::operator!=(const Fixed &other)
+bool	Fixed::operator!=(const Fixed &other) const
 {
 	return (this->_rawBits != other._rawBits);
 }
 
-bool	Fixed::operator<(const Fixed &other)
+bool	Fixed::operator<(const Fixed &other) const
 {
 	return (this->_rawBits < other._rawBits);
 }
 
-bool	Fixed::operator>(const Fixed &other)
+bool	Fixed::operator>(const Fixed &other) const
 {
 	return (this->_rawBits > other._rawBits);
 }
 
-Fixed	Fixed::operator+(const Fixed &other)
+Fixed	Fixed::operator+(const Fixed &other) const
 {
 	Fixed	res;
 	res.setRawBits(this->_rawBits + other._rawBits);
 	return (res);
 }
 
-Fixed	Fixed::operator-(const Fixed &other)
+Fixed	Fixed::operator-(const Fixed &other) const
 {
 	Fixed	res;
 	res.setRawBits(this->_rawBits - other._rawBits);
 	return (res);
 }
 
-Fixed	Fixed::operator*(const Fixed &other)
+Fixed	Fixed::operator*(const Fixed &other) const
 {
 	Fixed	res;
 
@@ -128,7 +128,7 @@ Fixed	Fixed::operator*(const Fixed &other)
 	return (res);
 }
 
-Fixed	Fixed::operator/(const Fixed &other)
+Fixed	Fixed::operator/(const Fixed &other) const
 {
 	Fixed	res;
 
@@ -136,7 +136,7 @@ Fixed	Fixed::operator/(const Fixed &other)
 	return (res);
 }
 
-Fixed	Fixed::operator%(const Fixed &other)
+Fixed	Fixed::operator%(const Fixed &other) const
 {
 	Fixed	res;
 	res.setRawBits(this->_rawBits % other._rawBits);
