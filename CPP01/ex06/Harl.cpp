@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 10:34:13 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/21 11:14:33 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/02/01 17:03:25 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,10 @@ void	Harl::complain(std::string complain)
 	{
 		case 0:
 			debug();
-			// fall through
 		case 1:
 			info();
-			// fall through
 		case 2:
 			warning();
-			// fall through
 		case 3:
 			error();
 			break ;

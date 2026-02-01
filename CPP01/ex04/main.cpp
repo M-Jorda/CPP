@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 15:17:18 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/20 16:54:06 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/02/01 17:01:08 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ std::string	ft_getContent(std::ifstream &inputFile)
 	while (std::getline(inputFile, line))
 	{
 		content += line;
-		content += "\n";
+		if (!inputFile.eof())
+			content += "\n";
 	}
 	inputFile.close();
 	return (content);
@@ -48,9 +49,9 @@ void	ft_replace(std::string &content, std::string s1, std::string s2)
 
 int	ft_isvalid(int argc, char **argv)
 {
-	std::string	arg(argv[2]);
 	if (argc != 4)
 		return (ft_err(FORMAT));
+	std::string	arg(argv[2]);
 	if (arg == "")
 		return (ft_err(INV_ARG));
 	return (0);
