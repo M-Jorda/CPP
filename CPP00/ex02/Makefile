@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= zombie
+NAME		= account
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
-SRCS		= Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRCS		= Account.cpp tests.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all:		$(NAME)

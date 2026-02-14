@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= zombie
+NAME		= SedIsForLooser
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
-SRCS		= Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRCS		= main.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all:		$(NAME)
@@ -31,6 +31,7 @@ clean:
 
 fclean:		clean
 			rm -f $(NAME)
+			rm -f tests/*.replace
 
 re:			fclean all
 

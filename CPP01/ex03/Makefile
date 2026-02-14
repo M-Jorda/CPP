@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= zombie
+NAME		= unnecesaryViolence
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
-SRCS		= Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRCS		= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all:		$(NAME)
