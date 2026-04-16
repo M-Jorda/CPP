@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 08:53:19 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 10:10:36 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 19:05:15 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,24 @@ void		DiamondTrap::whoAmI()
 {
 	std::cout << "My DiamondTrap name is: " << _name << std::endl;
 	std::cout << "My ClapTrap name is: " << ClapTrap::_name << std::endl;
+}
+
+std::string	DiamondTrap::getName(void) const
+{
+	return (_name);
+}
+
+int			DiamondTrap::getHitPoint(void) const
+{
+	return (_hitPoint);
+}
+
+int			DiamondTrap::getEnergyPoint(void) const
+{
+	return (_energyPoint);
+}
+
+int			DiamondTrap::getAttackDmg(void) const
+{
+	return (_attackDmg);
 }

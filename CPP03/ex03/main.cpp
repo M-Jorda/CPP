@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 08:51:15 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 10:15:19 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 18:53:53 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int main(void)
 	diamond2.whoAmI();
 	
 	std::cout << "\n===== TEST 12 : DiamondTrap Attributes =====" << std::endl;
-	std::cout << "DiamondTrap has:" << std::endl;
-	std::cout << "  - Hit Points: 100 (from FragTrap)" << std::endl;
-	std::cout << "  - Energy Points: 50 (from ScavTrap)" << std::endl;
-	std::cout << "  - Attack Damage: 30 (from FragTrap)" << std::endl;
+	std::cout << "DiamondTrap " << diamond2.getName() << " has:" << std::endl;
+	std::cout << "  - Hit Points: " << diamond2.getHitPoint() << " (from FragTrap)" << std::endl;
+	std::cout << "  - Energy Points: " << diamond2.getEnergyPoint() << " (from ScavTrap)" << std::endl;
+	std::cout << "  - Attack Damage: " << diamond2.getAttackDmg() << " (from FragTrap)" << std::endl;
 	
 	std::cout << "\n===== TEST 13 : DiamondTrap whoAmI() multiple times =====" << std::endl;
 	for (int i = 0; i < 2; i++)

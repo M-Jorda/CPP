@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 18:50:00 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/22 09:02:28 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 18:38:55 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ ClapTrap::ClapTrap(std::string name) : _hitPoint(10), _energyPoint(10), _attackD
 	_name = name;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &other) : _hitPoint(10), _energyPoint(10), _attackDmg(0)
+ClapTrap::ClapTrap(const ClapTrap &other) : _name(other._name), _hitPoint(other._hitPoint),
+	_energyPoint(other._energyPoint), _attackDmg(other._attackDmg)
 {
 	std::cout << "Creation of a copy of " << other._name << std::endl;
-	_name = other._name;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -50,13 +50,18 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &other)
 
 void		ClapTrap::attack(const std::string& target)
 {
+	if (_hitPoint <= 0)
+	{
+		std::cout << "This Claptrap doesn't exist anymore" << std::endl;
+		return ;
+	}
 	if (_energyPoint > 0){
 		std::cout << "Claptrap " << _name << " attack " << target;
 		std::cout << ", causing " << _attackDmg << " points of damage !" << std::endl;
-		_energyPoint -= 1;
+		_energyPoint--;
 	}
 	else
-		std::cout << "Claptrap " << _name <<" doesn't have enought energy to attack." << std::endl;
+		std::cout << "Claptrap " << _name <<" doesn't have enough energy to attack." << std::endl;
 }
 
 void		ClapTrap::takeDamage(unsigned int amount)
@@ -67,10 +72,7 @@ void		ClapTrap::takeDamage(unsigned int amount)
 		std::cout << amount << " of damage !" << std::endl;
 		_hitPoint -= amount;
 		if (_hitPoint <= 0)
-		{
-			std::cout << "Claptrap " << _name << " doesn't have enought hit point to continue" << std::endl;
-			ClapTrap::~ClapTrap();
-		}
+			std::cout << "Claptrap " << _name << " doesn't have enough hit point to continue" << std::endl;
 	}
 	else
 		std::cout << "This Claptrap doesn't exist anymore" << std::endl;
@@ -78,14 +80,19 @@ void		ClapTrap::takeDamage(unsigned int amount)
 
 void		ClapTrap::beRepaired(unsigned int amount)
 {
+	if (_hitPoint <= 0)
+	{
+		std::cout << "This Claptrap doesn't exist anymore" << std::endl;
+		return ;
+	}
 	if (_energyPoint > 0)
 	{
 		_hitPoint += amount;
-		_energyPoint -= 1;
+		_energyPoint--;
 		std::cout << "Claptrap " << _name << " repair itself, regaining ";
 		std::cout << amount << " of hit points." << std::endl;
 	}
 	else
-		std::cout << "Claptrap " << _name << "doesn't have enought energy ..." << std::endl;
+		std::cout << "Claptrap " << _name << " doesn't have enough energy ..." << std::endl;
 }
 

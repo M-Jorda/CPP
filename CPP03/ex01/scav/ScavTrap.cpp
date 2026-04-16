@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 17:35:52 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 10:27:03 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 18:28:03 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,16 @@ ScavTrap::ScavTrap(void)
 
 ScavTrap::ScavTrap(std::string name)
 {
-	std::cout << "Creation of ScavTrap " << name << std::endl;
 	_name = name;
 	_hitPoint = 100;
 	_energyPoint = 50;
 	_attackDmg = 20;
+	std::cout << "Creation of ScavTrap " << _name << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
-	std::cout << "Creation of a copy of " << other._name << std::endl;
-	_hitPoint = other._hitPoint;
-	_energyPoint = other._energyPoint;
-	_attackDmg = other._attackDmg;
+	std::cout << "Creation of a copy of " << _name << std::endl;
 }
 
 ScavTrap::~ScavTrap(void)
@@ -47,17 +44,22 @@ ScavTrap	&ScavTrap::operator=(const ScavTrap &other)
 {
 	if (this != &other)
 	{
-		std::cout << "Creation by assignation of a copy of " << other._name << std::endl;
 		_name = other._name;
 		_hitPoint = other._hitPoint;
 		_energyPoint = other._energyPoint;
 		_attackDmg = other._attackDmg;
+		std::cout << "Creation by assignation of a copy of " << _name << std::endl;
 	}
 	return (*this);
 }
 
 void		ScavTrap::attack(const std::string& target)
 {
+	if (_hitPoint <= 0)
+	{
+		std::cout << "This ScavTrap doesn't exist anymore" << std::endl;
+		return ;
+	}
 	if (_energyPoint > 0)
 	{
 		std::cout << "ScavTrap " << _name << " attack " << target;
@@ -70,6 +72,11 @@ void		ScavTrap::attack(const std::string& target)
 
 void 		ScavTrap::guardGate()
 {
+	if (_hitPoint <= 0)
+	{
+		std::cout << "This ScavTrap doesn't exist anymore" << std::endl;
+		return ;
+	}
 	if (_energyPoint > 0){
 		std::cout << "ScavTrap " << _name << " is now in Gate keeper mode." << std::endl;
 		_energyPoint -= 1;
