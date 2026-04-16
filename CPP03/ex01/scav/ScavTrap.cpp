@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 17:35:52 by jjorda            #+#    #+#             */
-/*   Updated: 2026/04/16 18:28:03 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 21:35:22 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ ScavTrap::ScavTrap(void)
 	_attackDmg = 20;
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	_name = name;
 	_hitPoint = 100;
 	_energyPoint = 50;
 	_attackDmg = 20;

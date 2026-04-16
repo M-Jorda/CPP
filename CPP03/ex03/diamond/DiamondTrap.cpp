@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 08:53:19 by jjorda            #+#    #+#             */
-/*   Updated: 2026/04/16 19:05:15 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 21:51:53 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ DiamondTrap::DiamondTrap(void)
 	_name = "DiamondTrap";
 	_hitPoint = FragTrap::_hitPoint;
 	_energyPoint = ScavTrap::_energyPoint;
-	_attackDmg = FragTrap::_attackDmg;
+	_attackDmg = ATTACKDMG;
 }
 
 DiamondTrap::DiamondTrap(std::string name)
@@ -30,7 +30,7 @@ DiamondTrap::DiamondTrap(std::string name)
 	std::cout << "Creation of DiamondTrap " << name << std::endl;
 	_hitPoint = FragTrap::_hitPoint;
 	_energyPoint = ScavTrap::_energyPoint;
-	_attackDmg = FragTrap::_attackDmg;
+	_attackDmg = ATTACKDMG;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &other)

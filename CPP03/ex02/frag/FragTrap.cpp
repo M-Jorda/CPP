@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 08:18:44 by jjorda            #+#    #+#             */
-/*   Updated: 2026/04/16 16:44:53 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 21:36:06 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ FragTrap::FragTrap(void)
 	_attackDmg = 30;
 }
 
-FragTrap::FragTrap(const std::string name)
+FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 {
-	_name = name;
 	_hitPoint = 100;
 	_energyPoint = 100;
 	_attackDmg = 30;

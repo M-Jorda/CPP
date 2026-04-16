@@ -6,14 +6,15 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 18:40:49 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 10:17:12 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 21:49:06 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 
-# include "ClapTrap.h"
+# include <string>
+# include <iostream>
 
 class ClapTrap
 {

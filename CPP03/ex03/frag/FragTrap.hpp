@@ -6,14 +6,14 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 08:13:41 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 10:17:09 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 21:48:52 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRAGTRAP_HPP
 # define FRAGTRAP_HPP
 
-# include "FragTrap.h"
+# include "ClapTrap.hpp"
 
 class FragTrap : virtual public ClapTrap
 {

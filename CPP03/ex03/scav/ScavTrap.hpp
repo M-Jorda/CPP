@@ -6,14 +6,14 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:24:16 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 10:17:03 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/04/16 21:48:37 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCAVTRAP_HPP
 # define SCAVTRAP_HPP
 
-# include "ScavTrap.h"
+# include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap
 {
