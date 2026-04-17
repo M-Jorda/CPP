@@ -6,29 +6,28 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 11:38:14 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 13:59:39 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 11:38:14 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#pragma once
 
-# include "Animal.h"
+# include <string>
+# include "Polymorphism.hpp"
 
 class Animal
 {
-	protected :
+	protected:
 		std::string	_type;
 
-	public :
-		Animal(void);
-		Animal(std::string type);
-		Animal(const Animal &other);
-		virtual ~Animal(void);
+	public:
+		Animal();
+		Animal(const Animal& other);
+		Animal&			operator=(const Animal& other);
+		virtual			~Animal();
 
-		Animal 			&operator=(const Animal &other);
-		virtual void	makeSound()							const;
-		std::string		getType(void)						const;
+		virtual void	makeSound() const;
+		std::string		getType() const;
 };
 
-#endif
+std::ostream& operator<<(std::ostream& os, const Animal& other);

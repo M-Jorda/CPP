@@ -6,32 +6,25 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 14:24:08 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 15:20:02 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 14:24:08 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#pragma once
 
-# include "Brain.h"
+# include <string>
+# include "Polymorphism.hpp"
 
 class Brain
 {
-	protected :
-		std::string	_ideas[100];
-		int			_CountIdea;
+	public:
+		std::string	ideas[100];
 
-	public :
-		Brain(void);
-		Brain(std::string idea);
-		Brain(const Brain &other);
-		~Brain(void);
+		Brain();
+		Brain(const Brain& other);
+		Brain&		operator=(const Brain& other);
+		~Brain();
 
-		Brain		&operator=(const Brain &other);
-		void		setideas(std::string *ideas, int countIdea);
-		void		setIdea(std::string);
-		std::string	getIdea(int idea);
-		std::string	*getIdeas(void);
+		void		setIdea(int index, const std::string& idea);
+		std::string	getIdea(int index) const;
 };
-
-#endif

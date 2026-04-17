@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.h                                           :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 11:36:35 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 16:06:29 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 14:03:52 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 14:03:52 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_H
-# define ANIMAL_H
+#pragma once
 
-# include <string>
-# include <iostream>
+# include "WrongAnimal.hpp"
 
-# include "../Brain/Brain.hpp"
+# define NAME_WRONGCAT	"WrongCat"
+# define MSG_WRONGCAT	"WrongMeow!"
 
-#endif
+class WrongCat : public WrongAnimal
+{
+	public:
+		WrongCat();
+		WrongCat(const WrongCat& other);
+		WrongCat&	operator=(const WrongCat& other);
+		~WrongCat();
+
+		void	makeSound() const;
+};

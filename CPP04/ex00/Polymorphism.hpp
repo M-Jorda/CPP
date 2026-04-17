@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.h                                         :+:      :+:    :+:   */
+/*   Polymorphism.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 13:54:00 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 14:06:01 by jjorda           ###   ########.fr       */
+/*   Created: 2026/04/17 20:08:41 by jjorda            #+#    #+#             */
+/*   Updated: 2026/04/17 20:08:41 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_H
-# define WRONGCAT_H
+#pragma once
 
-# include "../WrongAnimal/WrongAnimal.hpp"
+# include <iostream>
 
-#endif
+using std::cout;
+using std::endl;
+
+# define MSG_CONS		" constructor called"
+# define MSG_DES		" destructor called"
+
+# define MSG_DF_CONS	" default" MSG_CONS
+# define MSG_CP_CONS	" copy" MSG_CONS

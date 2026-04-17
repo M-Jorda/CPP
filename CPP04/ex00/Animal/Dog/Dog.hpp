@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.h                                         :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 13:54:00 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 14:06:01 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 12:15:04 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 12:15:04 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_H
-# define WRONGCAT_H
+#pragma once
 
-# include "../WrongAnimal/WrongAnimal.hpp"
+# include "Animal.hpp"
 
-#endif
+# define NAME_DOG	"Dog"
+# define MSG_DOG	"Woof!"
+
+class Dog : public Animal
+{
+	public:
+		Dog();
+		Dog(const Dog& other);
+		Dog&	operator=(const Dog& other);
+		~Dog();
+
+		void	makeSound() const;
+};

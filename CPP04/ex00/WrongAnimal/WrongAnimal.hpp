@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 11:38:14 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 11:38:14 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 13:54:32 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 13:54:32 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 # include <string>
 # include "Polymorphism.hpp"
 
-class Animal
+# define NAME_WRONGANIMAL	"WrongAnimal"
+# define MSG_WRONGANIMAL	"WrongAnimal sound..."
+
+class WrongAnimal
 {
 	protected:
 		std::string	_type;
 
 	public:
-		Animal();
-		Animal(const Animal& other);
-		Animal&			operator=(const Animal& other);
-		virtual			~Animal();
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal& other);
+		WrongAnimal&	operator=(const WrongAnimal& other);
+		~WrongAnimal();
 
-		virtual void	makeSound() const = 0;
-		std::string		getType() const;
+		void		makeSound() const;
+		std::string	getType() const;
 };
 
-std::ostream& operator<<(std::ostream& os, const Animal& other);
+std::ostream& operator<<(std::ostream& os, const WrongAnimal& other);

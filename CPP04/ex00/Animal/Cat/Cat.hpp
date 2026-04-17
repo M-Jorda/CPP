@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.h                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 11:36:35 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 16:06:29 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 12:32:40 by jjorda            #+#    #+#             */
+/*   Updated: 2025/12/23 12:32:40 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_H
-# define ANIMAL_H
+#pragma once
 
-# include <string>
-# include <iostream>
+# include "Animal.hpp"
 
-# include "../Brain/Brain.hpp"
+# define NAME_CAT	"Cat"
+# define MSG_CAT	"Meow!"
 
-#endif
+class Cat : public Animal
+{
+	public:
+		Cat();
+		Cat(const Cat& other);
+		Cat&	operator=(const Cat& other);
+		~Cat();
+
+		void	makeSound() const;
+};

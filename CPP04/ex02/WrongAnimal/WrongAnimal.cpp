@@ -6,49 +6,46 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:59:57 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 14:03:28 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 13:59:57 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal(void) : _type("WrongAnimal")
+WrongAnimal::WrongAnimal() : _type(NAME_WRONGANIMAL)
 {
-	std::cout << "WrongAnimal default constructor called" << std::endl;
+	cout << NAME_WRONGANIMAL << MSG_DF_CONS << endl;
 }
 
-WrongAnimal::WrongAnimal(std::string type) : _type(type)
+WrongAnimal::WrongAnimal(const WrongAnimal& other) : _type(other._type)
 {
-	std::cout << "WrongAnimal type constructor called for " << _type << std::endl;
+	cout << NAME_WRONGANIMAL << MSG_CP_CONS << endl;
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal &other)
-{
-	std::cout << "WrongAnimal copy from " << other._type << std::endl;
-	this->_type = other._type;
-}
-
-WrongAnimal::~WrongAnimal(void)
-{
-	std::cout << "WrongAnimal destructor called" << std::endl;
-}
-
-WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &other)
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
 {
 	if (this != &other)
-	{
-		std::cout << "Creation by assignation of a copy" << std::endl;
-		this->_type = other._type;
-	}
-	return (*this);
+		_type = other._type;
+	return *this;
 }
 
-void	WrongAnimal::makeSound(void)							const
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "the sound of the WrongAnimal depend his type" << std::endl;
+	cout << NAME_WRONGANIMAL << MSG_DES << endl;
 }
 
-std::string	WrongAnimal::getType(void)							const
+void WrongAnimal::makeSound() const
 {
-	return (_type);
+	cout << MSG_WRONGANIMAL << endl;
+}
+
+std::string WrongAnimal::getType() const
+{
+	return _type;
+}
+
+std::ostream& operator<<(std::ostream& os, const WrongAnimal& other)
+{
+	os << other.getType() << endl;
+	return os;
 }

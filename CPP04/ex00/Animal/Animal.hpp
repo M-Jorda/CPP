@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.h                                      :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 13:52:56 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 13:53:46 by jjorda           ###   ########.fr       */
+/*   Created: 2025/12/23 11:38:14 by jjorda            #+#    #+#             */
+/*   Updated: 2026/04/17 20:36:42 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_H
-# define WRONGANIMAL_H
+#pragma once
 
-# include <iostream>
 # include <string>
+# include "Polymorphism.hpp"
 
-#endif
+# define NAME_ANIMAL	"Animal"
+# define MSG_ANIMAL		"..."
+
+class Animal
+{
+	protected:
+		std::string	_type;
+
+	public:
+		Animal();
+		Animal(const Animal& other);
+		Animal&			operator=(const Animal& other);
+		virtual			~Animal();
+
+		virtual void	makeSound() const;
+		std::string		getType() const;
+};
+
+std::ostream& operator<<(std::ostream& os, const Animal& other);

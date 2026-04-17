@@ -6,80 +6,46 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 14:22:44 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 15:24:09 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 14:22:44 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 
-Brain::Brain(void)
+Brain::Brain()
 {
-	std::cout << "A new brain grew up ..." << std::endl;
-	_CountIdea = 0;
+	cout << NAME_BRAIN << MSG_DF_CONS << endl;
 }
 
-Brain::Brain(std::string idea)
+Brain::Brain(const Brain& other)
 {
-	_ideas[0] = idea;
-	_CountIdea = 1;
-	std::cout << "A new brain grew up with it first idea : " << idea << std::endl;
+	for (int i = 0; i < 100; i++)
+		ideas[i] = other.ideas[i];
+	cout << NAME_BRAIN << MSG_CP_CONS << endl;
 }
 
-Brain::Brain(const Brain &other)
-{
-	_CountIdea = other._CountIdea;
-	for (int i = 0; i < _CountIdea; i++)
-		_ideas[i] = other._ideas[i];
-	std::cout << "A new brain grew up with " << _CountIdea << " idea(s)" << std::endl;
-}
-
-Brain::~Brain(void)
-{
-	std::cout << "The Brain destructor called" << std::endl;
-}
-
-Brain		&Brain::operator=(const Brain &other)
+Brain& Brain::operator=(const Brain& other)
 {
 	if (this != &other)
-	{
-		_CountIdea = other._CountIdea;
-		for (int i = 0; i < _CountIdea; i++)
-			_ideas[i] = other._ideas[i];
-		std::cout << "A new brain has been assigned with " << _CountIdea << " idea(s)" << std::endl;
-	}
-	return (*this);
+		for (int i = 0; i < 100; i++)
+			ideas[i] = other.ideas[i];
+	return *this;
 }
 
-void	Brain::setideas(std::string *ideas, int countIdea)
+Brain::~Brain()
 {
-	if (_CountIdea > 99)
-	{
-		std::cout << "The number max of ideas already reach" << std::endl;
-		return ;
-	}
-	for (int i = _CountIdea; i < 100; i++)
-		_ideas[i] = ideas[countIdea];
-	std::cout << "A new set of ideas reach the brain" << std::endl;
+	cout << NAME_BRAIN << MSG_DES << endl;
 }
 
-void	Brain::setIdea(std::string idea)
+void Brain::setIdea(int index, const std::string& idea)
 {
-	if (_CountIdea > 99)
-	{
-		std::cout << "The number max of ideas already reach" << std::endl;
-		return ;
-	}
-	_ideas[_CountIdea] = idea;
-	_CountIdea++;
-	std::cout << "A new idea reach the brain" << std::endl;
+	if (index >= 0 && index < 100)
+		ideas[index] = idea;
 }
 
-std::string	Brain::getIdea(int idea)
+std::string Brain::getIdea(int index) const
 {
-	return (_ideas[idea]);
-}
-
-std::string	*Brain::getIdeas(void)
-{
-	return (_ideas);
+	if (index >= 0 && index < 100)
+		return ideas[index];
+	return "";
 }

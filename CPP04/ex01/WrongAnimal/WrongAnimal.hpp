@@ -6,29 +6,28 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:54:32 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 13:59:24 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 13:54:32 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#pragma once
 
-# include "WrongAnimal.h"
+# include <string>
+# include "Polymorphism.hpp"
 
 class WrongAnimal
 {
-	protected :
+	protected:
 		std::string	_type;
 
-	public :
-		WrongAnimal(void);
-		WrongAnimal(std::string type);
-		WrongAnimal(const WrongAnimal &other);
-		~WrongAnimal(void);
+	public:
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal& other);
+		WrongAnimal&	operator=(const WrongAnimal& other);
+		~WrongAnimal();
 
-		WrongAnimal	&operator=(const WrongAnimal &other);
-		void		makeSound(void)							const;
-		std::string	getType(void)							const;
+		void		makeSound() const;
+		std::string	getType() const;
 };
 
-#endif
+std::ostream& operator<<(std::ostream& os, const WrongAnimal& other);

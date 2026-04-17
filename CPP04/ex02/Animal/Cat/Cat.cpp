@@ -6,50 +6,46 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 12:35:21 by jjorda            #+#    #+#             */
-/*   Updated: 2025/12/23 16:25:46 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/12/23 12:35:21 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat(void) : Animal("Cat"), _name("Mistigris")
+Cat::Cat() : Animal(), _brain(new Brain())
 {
-	_brain = new Brain;
-	std::cout << "Cat default constructor called" << std::endl;
+	_type = NAME_CAT;
+	cout << NAME_CAT << MSG_DF_CONS << endl;
 }
 
-Cat::Cat(std::string name) : Animal("Cat"), _name(name)
+Cat::Cat(const Cat& other) : Animal(other), _brain(new Brain(*other._brain))
 {
-	_brain = new Brain;
-	std::cout << "Cat name constructor called for " << name << std::endl;
+	cout << NAME_CAT << MSG_CP_CONS << endl;
 }
 
-Cat::Cat(const Cat &other) : Animal(other), _name(other._name)
-{
-	_brain = new Brain(*other._brain);
-	std::cout << "Cat copy constructor called for " << other._name << std::endl;
-}
-
-Cat::~Cat(void)
-{
-	delete _brain;
-	std::cout << "Cat destructor called for " << _name << std::endl;
-}
-
-Cat		&Cat::operator=(const Cat &other)
+Cat& Cat::operator=(const Cat& other)
 {
 	if (this != &other)
 	{
-		std::cout << "Cat assignment operator called" << std::endl;
-		this->_name = other._name;
-		this->_type = other._type;
-		delete this->_brain;
-		this->_brain = new Brain(*other._brain);
+		Animal::operator=(other);
+		delete _brain;
+		_brain = new Brain(*other._brain);
 	}
-	return (*this);
+	return *this;
 }
 
-void	Cat::makeSound() const
+Cat::~Cat()
 {
-	std::cout << "The cat is meowing ..." << std::endl;
+	delete _brain;
+	cout << NAME_CAT << MSG_DES << endl;
+}
+
+void Cat::makeSound() const
+{
+	cout << MSG_CAT << endl;
+}
+
+Brain* Cat::getBrain() const
+{
+	return _brain;
 }
