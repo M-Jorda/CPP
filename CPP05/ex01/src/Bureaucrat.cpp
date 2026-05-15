@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 12:57:38 by jjorda            #+#    #+#             */
-/*   Updated: 2026/05/15 13:38:08 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/05/15 17:04:17 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ void	Bureaucrat::decGrade()
 	if (_grade >= 150)
 		throw GradeTooLowException();
 	_grade++;
+}
+
+void	Bureaucrat::signForm(Form f)
+{
+	f.beSigned(this);
 }
 
 const char*	Bureaucrat::GradeTooHighException::what()	const throw()

@@ -1,4 +1,4 @@
-NAME		= "Form up, maggots"
+NAME		= "Form up, maggots!"
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
