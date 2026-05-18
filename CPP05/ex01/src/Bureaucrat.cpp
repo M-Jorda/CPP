@@ -6,13 +6,14 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 12:57:38 by jjorda            #+#    #+#             */
-/*   Updated: 2026/05/15 17:04:17 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/05/18 18:39:02 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 using std::cout;
+using std::cerr;
 using std::endl;
 
 Bureaucrat::Bureaucrat() : _name("Robert")
@@ -84,9 +85,17 @@ void	Bureaucrat::decGrade()
 	_grade++;
 }
 
-void	Bureaucrat::signForm(Form f)
+void	Bureaucrat::signForm(Bureaucrat b, Form f)
 {
-	f.beSigned(this);
+	try
+	{
+		(f.beSigned(b));
+		cout << b.getName() << " signed " << f.getName() << endl;
+	}
+	catch(const std::exception& e)
+	{
+		cerr << b.getName() << " couldn't sign " << f.getName() << " because " << e.what() << endl;
+	}
 }
 
 const char*	Bureaucrat::GradeTooHighException::what()	const throw()
