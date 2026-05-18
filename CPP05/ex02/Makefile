@@ -1,4 +1,4 @@
-NAME		= "Form up, maggots!"
+NAME		= "No, you need form 28B, not 28C..."
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -6,7 +6,7 @@ CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 INCLUDES	= -I. -Iinclude
 
 SRC_DIR		= src/
-SRCS		= $(SRC_DIR)main.cpp $(SRC_DIR)Bureaucrat.cpp $(SRC_DIR)Form.cpp
+SRCS		= $(SRC_DIR)main.cpp $(SRC_DIR)Bureaucrat.cpp $(SRC_DIR)AForm.cpp
 
 OBJ_DIR		= obj
 OBJS		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
