@@ -5,7 +5,7 @@
 # include <iostream>
 # include <exception>
 
-# include "Bureaucrat.hpp"
+class Bureaucrat;
 
 class	Form
 {
@@ -17,13 +17,13 @@ class	Form
 
 	public:
 		Form();
-		Form(std::string name, int _isSigned, int _gradeToSign, int _gradeToExecute);
+		Form(std::string name, int gradeToSign, int gradeToExecute);
 		Form(const Form &other);
 		Form &operator=(const Form &other);
 		~Form();
 
 		std::string	getName() const;
-		int			getIsSigned() const;
+		bool		getIsSigned() const;
 		int			getGradeToSign() const;
 		int			getGradeToExecute() const;
 

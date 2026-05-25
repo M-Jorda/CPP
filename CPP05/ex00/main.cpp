@@ -1,32 +1,66 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/15 13:07:05 by jjorda            #+#    #+#             */
-/*   Updated: 2026/05/15 13:37:43 by jjorda           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
+#include <iostream>
 
-using std::cout;
-using std::endl;
-
-int	main(void)
+int	main()
 {
-	Bureaucrat John("John", 75);
-	cout << John.getName() << ": " << John.getGrade() << endl;
+	std::cout << "--- Tests valides ---" << std::endl;
 	try
 	{
-		for (int i = 0; i < 100; i++)
-			John.decGrade();
+		Bureaucrat b1("Alice", 2);
+		std::cout << b1 << std::endl;
+		b1.incGrade();
+		std::cout << "Apres incGrade: " << b1 << std::endl;
+		b1.decGrade();
+		std::cout << "Apres decGrade: " << b1 << std::endl;
 	}
-	catch(const std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	cout << John << endl;
+
+	std::cout << "\n--- Test GradeTooHighException (constructeur) ---" << std::endl;
+	try
+	{
+		Bureaucrat b2("Bob", 0);
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	std::cout << "\n--- Test GradeTooLowException (constructeur) ---" << std::endl;
+	try
+	{
+		Bureaucrat b3("Charlie", 151);
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	std::cout << "\n--- Test GradeTooHighException (incGrade) ---" << std::endl;
+	try
+	{
+		Bureaucrat b4("Dave", 2);
+		b4.incGrade();
+		b4.incGrade();
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	std::cout << "\n--- Test GradeTooLowException (decGrade) ---" << std::endl;
+	try
+	{
+		Bureaucrat b5("Eve", 149);
+		b5.decGrade();
+		b5.decGrade();
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 12:57:38 by jjorda            #+#    #+#             */
-/*   Updated: 2026/05/18 18:39:02 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/05/25 10:40:02 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ Bureaucrat::Bureaucrat() : _name("Robert")
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	if (grade <= 1)
+	if (grade < 1)
 		throw GradeTooHighException();
-	if (grade >= 150)
+	if (grade > 150)
 		throw GradeTooLowException();
 	_grade = grade;
 	cout << "Creation of " << name << endl;
@@ -34,9 +34,9 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name)
 {
-	if (other._grade <= 1)
+	if (other._grade < 1)
 		throw GradeTooHighException();
-	if (other._grade >= 150)
+	if (other._grade > 150)
 		throw GradeTooLowException();
 	_grade = other._grade;
 	cout << "Creation of a copy of " << other._name << endl;
@@ -47,9 +47,9 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other)
 	if (this != &other)
     {
 		cout << "Assignation of a copy of " << other._name << endl;
-		if (other._grade <= 1)
+		if (other._grade < 1)
 			throw GradeTooHighException();
-		if (other._grade >= 150)
+		if (other._grade > 150)
 			throw GradeTooLowException();
 		_grade = other._grade;
     }
@@ -85,16 +85,16 @@ void	Bureaucrat::decGrade()
 	_grade++;
 }
 
-void	Bureaucrat::signForm(Bureaucrat b, Form f)
+void	Bureaucrat::signForm(Form &f)
 {
 	try
 	{
-		(f.beSigned(b));
-		cout << b.getName() << " signed " << f.getName() << endl;
+		(f.beSigned(*this));
+		cout << _name << " signed " << f.getName() << endl;
 	}
 	catch(const std::exception& e)
 	{
-		cerr << b.getName() << " couldn't sign " << f.getName() << " because " << e.what() << endl;
+		cerr << _name << " couldn't sign " << f.getName() << " because " << e.what() << endl;
 	}
 }
 

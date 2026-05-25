@@ -6,13 +6,14 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 12:57:38 by jjorda            #+#    #+#             */
-/*   Updated: 2026/05/15 13:38:08 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/05/25 10:30:48 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 using std::cout;
+using std::cerr;
 using std::endl;
 
 Bureaucrat::Bureaucrat() : _name("Robert")
@@ -23,9 +24,9 @@ Bureaucrat::Bureaucrat() : _name("Robert")
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	if (grade <= 1)
+	if (grade < 1)
 		throw GradeTooHighException();
-	if (grade >= 150)
+	if (grade > 150)
 		throw GradeTooLowException();
 	_grade = grade;
 	cout << "Creation of " << name << endl;
@@ -33,9 +34,9 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name)
 {
-	if (other._grade <= 1)
+	if (other._grade < 1)
 		throw GradeTooHighException();
-	if (other._grade >= 150)
+	if (other._grade > 150)
 		throw GradeTooLowException();
 	_grade = other._grade;
 	cout << "Creation of a copy of " << other._name << endl;
@@ -46,9 +47,9 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other)
 	if (this != &other)
     {
 		cout << "Assignation of a copy of " << other._name << endl;
-		if (other._grade <= 1)
+		if (other._grade < 1)
 			throw GradeTooHighException();
-		if (other._grade >= 150)
+		if (other._grade > 150)
 			throw GradeTooLowException();
 		_grade = other._grade;
     }

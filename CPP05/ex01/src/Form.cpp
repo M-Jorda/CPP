@@ -1,4 +1,5 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 using std::cout;
 using std::endl;
@@ -9,8 +10,12 @@ Form::Form() : _name("Robert"), _gradeToSign(1), _gradeToExecute(1)
 	cout << "Creation of standard " << "Robert" << endl;
 }
 
-Form::Form(std::string name, int isSigned, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
+	if (gradeToSign < 1 || gradeToExecute < 1)
+		throw GradeTooHighException();
+	if (gradeToSign > 150 || gradeToExecute > 150)
+		throw GradeTooLowException();
 	_isSigned = false;
 	cout << "Creation of " << name << endl;
 }
@@ -24,10 +29,8 @@ Form::Form(const Form &other) : _name(other._name), _gradeToSign(other._gradeToS
 Form&	Form::operator=(const Form& other)
 {
 	if (this != &other)
-    {
-		_isSigned = false;
-    }
-    return (*this);
+		_isSigned = other._isSigned;
+	return (*this);
 }
 
 Form::~Form()
@@ -40,7 +43,7 @@ std::string	Form::getName() const
 	return (_name);
 }
 
-int	Form::getIsSigned() const
+bool	Form::getIsSigned() const
 {
 	return (_isSigned);
 }

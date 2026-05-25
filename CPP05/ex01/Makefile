@@ -1,4 +1,4 @@
-NAME		= "Form up, maggots!"
+NAME		= Form\ up,\ maggots!
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -17,7 +17,7 @@ $(NAME):	$(OBJS)
 			$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp
-			mkdir -p $(OBJ_DIR)
+			mkdir -p $(dir $@)
 			$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
