@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 16:40:54 by jjorda            #+#    #+#             */
-/*   Updated: 2026/05/18 18:33:00 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/05/25 10:38:22 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class	Bureaucrat
 		void	incGrade();
 		void	decGrade();
 
-		void	signForm(Bureaucrat b, Form f);
+		void	signForm(Form &f);
 
 		class GradeTooHighException : public std::exception
 		{

@@ -1,4 +1,4 @@
-NAME		= "Mommy, when I grow up, I want to be a bureaucrat!"
+NAME		= Mommy,\ when\ I\ grow\ up,\ I\ want\ to\ be\ a\ bureaucrat!
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
