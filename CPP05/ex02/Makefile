@@ -22,7 +22,7 @@ $(NAME):	$(OBJS)
 			$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp
-			mkdir -p $(OBJ_DIR)
+			mkdir -p $(OBJ_DIR)/$(SRC_DIR)
 			$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:

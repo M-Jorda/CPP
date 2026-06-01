@@ -34,6 +34,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 void	ShrubberyCreationForm::_executeAction(Bureaucrat const & executor) const
 {
+	(void) executor;
 	std::string	line;
 	std::string	content;
 

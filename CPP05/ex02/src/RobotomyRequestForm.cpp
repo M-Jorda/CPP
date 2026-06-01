@@ -32,6 +32,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void	RobotomyRequestForm::_executeAction(Bureaucrat const & executor) const
 {
+	(void) executor;
 	cout << DRILL << endl;
 	if (std::rand() % 2 == 0)
 		cout << _target << FAILED_RBTMZD << endl;
