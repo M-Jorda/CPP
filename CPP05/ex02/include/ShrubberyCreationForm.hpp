@@ -1,9 +1,10 @@
-#pragma once
+#ifndef SHRUBBERYCREATIONFORM_HPP
+# define SHRUBBERYCREATIONFORM_HPP
 
-#include <exception>
-#include <fstream>
+# include <exception>
+# include <fstream>
 
-#include "AForm.hpp"
+# include "AForm.hpp"
 
 class	Bureaucrat;
 
@@ -29,3 +30,4 @@ class	ShrubberyCreationForm : public AForm
 		std::string _target;
 };
 
+#endif
