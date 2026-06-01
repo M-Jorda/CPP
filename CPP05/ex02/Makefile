@@ -6,7 +6,7 @@ CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 INCLUDES	= -I. -Iinclude
 
 SRC_DIR		= src/
-SRCS		= $(SRC_DIR)main.cpp \
+SRCS		= main.cpp \
 			$(SRC_DIR)Bureaucrat.cpp \
 			$(SRC_DIR)AForm.cpp \
 			$(SRC_DIR)ShrubberyCreationForm.cpp \

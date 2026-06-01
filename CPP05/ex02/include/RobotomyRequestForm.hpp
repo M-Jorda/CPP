@@ -1,7 +1,9 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-#include <AForm.hpp>
+# include <cstdlib>
+
+# include "AForm.hpp"
 
 class	Bureaucrat;
 
@@ -15,7 +17,7 @@ class	RobotomyRequestForm : public AForm
 		~RobotomyRequestForm();
 
 	protected:
-		void	_executeAction(Bureaucrat const & executor) const override;
+		void	_executeAction(Bureaucrat const & executor) const;
 
 	private:
 		std::string	_target;

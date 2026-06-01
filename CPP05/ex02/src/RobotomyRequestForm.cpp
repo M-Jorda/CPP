@@ -3,12 +3,12 @@
 using std::cout;
 using std::endl;
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("Shrubbery form", 72, 45), _target("Robotomy")
+RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy form", 72, 45), _target("Robotomy")
 {
 	cout << "Creation of standard " << endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Shrubbery form", 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy form", 72, 45), _target(target)
 {
 	cout << "Creation of " << target << endl;
 }

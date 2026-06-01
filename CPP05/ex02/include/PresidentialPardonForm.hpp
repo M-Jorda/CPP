@@ -1,7 +1,7 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
-# include <AForm.hpp>
+# include "AForm.hpp"
 
 class	Bureaucrat;
 
@@ -15,7 +15,7 @@ class	PresidentialPardonForm : public AForm
 		~PresidentialPardonForm();
 
 	protected:
-		void	_executeAction(Bureaucrat const & executor) const override;
+		void	_executeAction(Bureaucrat const & executor) const;
 
 	private:
 		std::string	_target;

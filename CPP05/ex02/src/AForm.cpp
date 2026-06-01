@@ -38,7 +38,7 @@ AForm&	AForm::operator=(const AForm& other)
 {
 	if (this != &other)
     {
-		_isSigned = false;
+		_isSigned = other._isSigned;
     }
     return (*this);
 }
@@ -53,7 +53,7 @@ std::string	AForm::getName() const
 	return (_name);
 }
 
-int	AForm::getIsSigned() const
+bool	AForm::getIsSigned() const
 {
 	return (_isSigned);
 }
@@ -68,7 +68,7 @@ int	AForm::getGradeToExecute() const
 	return (_gradeToExecute);
 }
 
-void	AForm::beSigned(Bureaucrat &b)
+void	AForm::beSigned(const Bureaucrat &b)
 {
 	if (b.getGrade() <= _gradeToSign)
 		_isSigned = true;

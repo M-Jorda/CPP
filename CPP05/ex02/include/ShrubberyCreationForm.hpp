@@ -24,7 +24,7 @@ class	ShrubberyCreationForm : public AForm
 		};
 
 	protected:
-		void	_executeAction(Bureaucrat const & executor) const override;
+		void	_executeAction(Bureaucrat const & executor) const;
 
 	private:
 		std::string _target;

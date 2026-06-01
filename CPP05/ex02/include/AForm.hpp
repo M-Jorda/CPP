@@ -19,11 +19,11 @@ class	AForm
 		~AForm();
 
 		std::string	getName() const;
-		int			getIsSigned() const;
+		bool		getIsSigned() const;
 		int			getGradeToSign() const;
 		int			getGradeToExecute() const;
 		
-		void	beSigned(Bureaucrat &b);
+		void	beSigned(const Bureaucrat &b);
 		void	execute(Bureaucrat const & executor) const;
 
 		class GradeTooHighException : public std::exception
