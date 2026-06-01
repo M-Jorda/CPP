@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:46:38 by jjorda            #+#    #+#             */
-/*   Updated: 2026/05/27 10:15:16 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/01 17:37:43 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,15 @@
 #define DRILL				"*drilling noises*"
 #define SUCCES_RBTMZD		" has succesfully been robotomized"
 #define FAILED_RBTMZD		" has failed been robotomized"
-#define PARDON				" has been pardonded bt Zaphod Beeblebrox."
+
+#define PARDON				" has been pardonded by Zaphod Beeblebrox."
+
+#define SHRUBNAME			"_shrubbery"
+#define	SHRUBTREES			"*        *\
+  ***      ***\
+ *****    *****\
+*******  *******\
+   |        |"
+
+#define	ERR					"Error: "
+#define	ERRCREATE			ERR "Cannot created the output file"

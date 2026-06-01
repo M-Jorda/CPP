@@ -1,16 +1,24 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-class	RobotomyRequestForm
+#include <AForm.hpp>
+
+class	Bureaucrat;
+
+class	RobotomyRequestForm : public AForm
 {
-	private:
-		type _name;
 	public:
 		RobotomyRequestForm();
-		RobotomyRequestForm(type name);
+		RobotomyRequestForm(std::string target);
 		RobotomyRequestForm(const RobotomyRequestForm &other);
 		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 		~RobotomyRequestForm();
+
+	protected:
+		void	_executeAction(Bureaucrat const & executor) const override;
+
+	private:
+		std::string	_target;
 };
 
 #endif

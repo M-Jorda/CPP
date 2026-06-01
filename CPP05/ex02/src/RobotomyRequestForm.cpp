@@ -3,32 +3,38 @@
 using std::cout;
 using std::endl;
 
-RobotomyRequestForm::RobotomyRequestForm() : _name(<name>)
+RobotomyRequestForm::RobotomyRequestForm() : AForm("Shrubbery form", 72, 45), _target("Robotomy")
 {
 	cout << "Creation of standard " << endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(type name) : _name(name)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Shrubbery form", 72, 45), _target(target)
 {
-	cout << "Creation of " << name << endl;
+	cout << "Creation of " << target << endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : _name(other._name)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : _target(other._target)
 {
-	cout << "Creation of a copy of " << other._name << endl;
+	cout << "Creation of a copy of " << other._target << endl;
 }
 
 RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
 	if (this != &other)
-    {
-		cout << "Assignation of a copy of " << other._name << endl;
-    }
+		cout << "Assignation of a copy of " << other._target << endl;
     return (*this);
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	cout << "Destruction of " << _name << endl;
+	cout << "Destruction of " << _target << endl;
 }
 
+void	RobotomyRequestForm::_executeAction(Bureaucrat const & executor) const
+{
+	cout << DRILL << endl;
+	if (std::rand() % 2 == 0)
+		cout << _target << FAILED_RBTMZD << endl;
+	else
+		cout << _target << SUCCES_RBTMZD << endl;
+}

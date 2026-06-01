@@ -1,10 +1,6 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
-# include <string>
-# include <iostream>
-# include <exception>
-
 # include <AForm.hpp>
 
 class	Bureaucrat;
