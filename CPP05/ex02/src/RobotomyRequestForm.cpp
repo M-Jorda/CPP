@@ -13,7 +13,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Shrubbery 
 	cout << "Creation of " << target << endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : _target(other._target)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other), _target(other._target)
 {
 	cout << "Creation of a copy of " << other._target << endl;
 }

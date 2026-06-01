@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 12:57:38 by jjorda            #+#    #+#             */
-/*   Updated: 2026/05/26 17:00:13 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/01 18:28:12 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,20 @@ void	Bureaucrat::decGrade()
 	if (_grade >= 150)
 		throw GradeTooLowException();
 	_grade++;
+}
+
+void	Bureaucrat::executeForm(AForm const & form) const
+{
+	try
+	{
+		form.execute(*this);
+		cout << getName() << " executed " << form.getName() << endl;
+	}
+	catch(const std::exception& e)
+	{
+		cerr << getName() << " couldn't execute " << form.getName() << endl; 
+		cerr << "Error: " << e.what() << endl;
+	}
 }
 
 const char*	Bureaucrat::GradeTooHighException::what()	const throw()

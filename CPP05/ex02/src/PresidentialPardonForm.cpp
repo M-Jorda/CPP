@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:16:59 by jjorda            #+#    #+#             */
-/*   Updated: 2026/06/01 16:41:44 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/01 17:44:52 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Pres
 	cout << "Creation of " << target << endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : _target(other._target)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm(other), _target(other._target)
 {
 	cout << "Creation of a copy of " << other._target << endl;
 }

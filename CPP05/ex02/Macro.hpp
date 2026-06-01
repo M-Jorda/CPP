@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:46:38 by jjorda            #+#    #+#             */
-/*   Updated: 2026/06/01 17:37:43 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/01 18:05:59 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@
 *******  *******\
    |        |"
 
-#define	ERR					"Error: "
-#define	ERRCREATE			ERR "Cannot created the output file"
+#define	GRADETOOLOW			"Grade is too low"
+#define GRADETOOHIGH		"Grade is too high"
+#define	FORMNOTSIGNED		"This form is not signed"
+#define	ERRCREATE			"Cannot created the output file"
