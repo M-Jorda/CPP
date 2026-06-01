@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 16:40:54 by jjorda            #+#    #+#             */
-/*   Updated: 2026/05/18 18:47:16 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/05/27 10:15:53 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 # include <iostream>
 # include <exception>
 
+# include "Macro.hpp"
 # include "AForm.hpp"
 
 class	Bureaucrat
 {
-	private:
-		const std::string	_name;
-		int					_grade;
 	public:
 		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
@@ -33,23 +31,25 @@ class	Bureaucrat
 
 		std::string	getName() const;
 		int			getGrade() const;
+		void		executeForm(AForm const & form) const;
 
 		void	incGrade();
 		void	decGrade();
-
-		void	signForm(Bureaucrat b, AForm f);
 
 		class GradeTooHighException : public std::exception
 		{
 			public:
 				virtual const char*	what()	const throw();
 		};
-
 		class	GradeTooLowException : public std::exception
 		{
 			public:
 				virtual const char*	what()	const throw();
 		};
+
+	private:
+		const std::string	_name;
+		int					_grade;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& other);

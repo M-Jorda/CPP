@@ -1,34 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/27 10:16:59 by jjorda            #+#    #+#             */
+/*   Updated: 2026/05/27 10:39:29 by jjorda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PresidentialPardonForm.hpp"
 
 using std::cout;
 using std::endl;
 
-PresidentialPardonForm::PresidentialPardonForm() : _name(<name>)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Form", 25, 5), _target("Mr Nobody")
 {
-	cout << "Creation of standard " << endl;
+	cout << "Creation of standard Mr Nobody" << endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(type name) : _name(name)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Form", 25, 5), _target(target)
 {
-	cout << "Creation of " << name << endl;
+	cout << "Creation of " << target << endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : _name(other._name)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : _target(other._target)
 {
-	cout << "Creation of a copy of " << other._name << endl;
+	cout << "Creation of a copy of " << other._target << endl;
 }
 
 PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
 {
 	if (this != &other)
     {
-		cout << "Assignation of a copy of " << other._name << endl;
+		cout << "Assignation of a copy of " << other._target << endl;
     }
     return (*this);
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-	cout << "Destruction of " << _name << endl;
+	cout << "Destruction of " << _target << endl;
+}
+
+void	PresidentialPardonForm::_executeAction(Bureaucrat const & executor) const
+{
+	cout << _target << PARDON << endl;
 }
 

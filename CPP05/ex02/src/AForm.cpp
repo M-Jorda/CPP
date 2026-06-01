@@ -21,7 +21,7 @@ AForm::AForm() : _name("Robert"), _gradeToSign(1), _gradeToExecute(1)
 	cout << "Creation of standard " << "Robert" << endl;
 }
 
-AForm::AForm(std::string name, int isSigned, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+AForm::AForm(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
 	_isSigned = false;
 	cout << "Creation of " << name << endl;
@@ -73,6 +73,12 @@ void	AForm::beSigned(Bureaucrat &b)
 		_isSigned = true;
 	else
 		throw GradeTooLowException();
+}
+
+void	AForm::execute(Bureaucrat const & executor)
+{
+	if ()
+	_executeAction(executor);
 }
 
 const char*	AForm::GradeTooHighException::what()	const throw()
