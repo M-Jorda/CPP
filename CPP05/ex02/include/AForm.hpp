@@ -5,6 +5,8 @@
 # include <iostream>
 # include <exception>
 
+# include "Macro.hpp"
+
 class	Bureaucrat;
 
 class	AForm
