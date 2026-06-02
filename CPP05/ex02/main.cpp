@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 13:07:05 by jjorda            #+#    #+#             */
-/*   Updated: 2026/06/02 17:04:03 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/02 17:07:43 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	main(void)
 
 	cout << "=== Invalid grades at construction ===" << endl;
 	try { Bureaucrat tooHigh("Icarus", 0); }
-	catch (std::exception &e) { cerr << "Error: " << e.what() << endl; }
+		catch (std::exception &e) { cerr << "Error: " << e.what() << endl; }
 	try { Bureaucrat tooLow("Mole", 151); }
-	catch (std::exception &e) { cerr << "Error: " << e.what() << endl; }
+		catch (std::exception &e) { cerr << "Error: " << e.what() << endl; }
 
 	cout << "\n=== Execute an unsigned form ===" << endl;
 	try
@@ -44,7 +44,7 @@ int	main(void)
 	cout << "\n=== Signed, but grade too low to execute ===" << endl;
 	try
 	{
-		Bureaucrat clerk("Clerk", 20); // signs (<= 25) but can't execute (> 5)
+		Bureaucrat clerk("Clerk", 20);
 		PresidentialPardonForm pardon("Arthur");
 		pardon.beSigned(clerk);
 		clerk.executeForm(pardon);
