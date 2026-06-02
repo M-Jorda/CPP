@@ -22,7 +22,7 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name),
 
 Form::Form(const Form &other) : _name(other._name), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute)
 {
-	_isSigned = false;
+	_isSigned = other._isSigned;
 	cout << "Creation of a copy of " << other._name << endl;
 }
 
@@ -58,7 +58,7 @@ int	Form::getGradeToExecute() const
 	return (_gradeToExecute);
 }
 
-void	Form::beSigned(Bureaucrat &b)
+void	Form::beSigned(const Bureaucrat &b)
 {
 	if (b.getGrade() <= _gradeToSign)
 		_isSigned = true;
