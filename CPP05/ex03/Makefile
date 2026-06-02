@@ -1,4 +1,4 @@
-NAME		= No,\ you\ need\ form\ 28B,\ not\ 28C...
+NAME		= At\ least\ this\ beats\ coffee-making
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -12,6 +12,7 @@ SRCS		= main.cpp \
 			$(SRC_DIR)ShrubberyCreationForm.cpp \
 			$(SRC_DIR)RobotomyRequestForm.cpp \
 			$(SRC_DIR)PresidentialPardonForm.cpp
+			$(SRC_DIR)Intern.cpp
 
 OBJ_DIR		= obj
 OBJS		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
