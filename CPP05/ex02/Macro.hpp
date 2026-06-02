@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:46:38 by jjorda            #+#    #+#             */
-/*   Updated: 2026/06/01 19:10:36 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/02 16:46:25 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define PARDON				" has been pardoned by Zaphod Beeblebrox."
 
 # define SHRUBNAME			"_shrubbery"
-# define SHRUBTREES			"*        *\n  ***      ***\n *****    *****\n\
+# define SHRUBTREES			"   *        *\n  ***      ***\n *****    *****\n\
 *******  *******\n   |        |"
 
 # define GRADETOOLOW		"Grade is too low"

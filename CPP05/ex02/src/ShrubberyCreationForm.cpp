@@ -21,9 +21,11 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
 	if (this != &other)
-    {
+	{
 		cout << "Assignation of a copy of " << other._target << endl;
-    }
+		AForm::operator=(other);
+		_target = other._target;
+	}
     return (*this);
 }
 
@@ -35,8 +37,6 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 void	ShrubberyCreationForm::_executeAction(Bureaucrat const & executor) const
 {
 	(void) executor;
-	std::string	line;
-	std::string	content;
 
 	std::string outputFileName(_target);
 	outputFileName += SHRUBNAME;

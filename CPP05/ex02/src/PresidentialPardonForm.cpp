@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:16:59 by jjorda            #+#    #+#             */
-/*   Updated: 2026/06/01 19:13:43 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/02 16:15:46 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& oth
 PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
 {
 	if (this != &other)
+	{
 		cout << "Assignation of a copy of " << other._target << endl;
+		AForm::operator=(other);
+		_target = other._target;
+	}
     return (*this);
 }
 

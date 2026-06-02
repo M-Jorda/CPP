@@ -24,13 +24,17 @@ AForm::AForm() : _name("Robert"), _gradeToSign(1), _gradeToExecute(1)
 
 AForm::AForm(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
+	if (gradeToSign < 1 || gradeToExecute < 1)
+		throw GradeTooHighException();
+	if (gradeToSign > 150 || gradeToExecute > 150)
+		throw GradeTooLowException();
 	_isSigned = false;
 	cout << "Creation of " << name << endl;
 }
 
 AForm::AForm(const AForm &other) : _name(other._name), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute)
 {
-	_isSigned = false;
+	_isSigned = other._isSigned;
 	cout << "Creation of a copy of " << other._name << endl;
 }
 

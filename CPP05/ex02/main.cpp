@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 13:07:05 by jjorda            #+#    #+#             */
-/*   Updated: 2026/06/01 18:41:39 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/02 16:43:47 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ using std::endl;
 
 int	main(void)
 {
+	std::srand(time(NULL));
 	cout << "=== TEST 1: Execute without signing ===" << endl;
 	try
 	{

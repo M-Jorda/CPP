@@ -21,7 +21,11 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AFo
 RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
 	if (this != &other)
+	{
 		cout << "Assignation of a copy of " << other._target << endl;
+		AForm::operator=(other);
+		_target = other._target;
+	}
     return (*this);
 }
 
