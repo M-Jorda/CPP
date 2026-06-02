@@ -1,17 +1,25 @@
 #ifndef INTERN_HPP
 # define INTERN_HPP
 
+# include <string>
+
+class AForm;
+
+struct FormEntry
+{
+	std::string	name;
+	AForm*		(*create)(std::string);
+};
+
 class	Intern
 {
 	public:
 		Intern();
-		Intern(type name);
 		Intern(const Intern &other);
 		Intern &operator=(const Intern &other);
 		~Intern();
 
-	private:
-		type _name;
+		AForm	*makeForm(std::string FormName, std::string target);
 };
 
 #endif
