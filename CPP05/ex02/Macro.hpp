@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:46:38 by jjorda            #+#    #+#             */
-/*   Updated: 2026/06/02 16:46:25 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/02 16:56:24 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define MSG_CP_CONS			" copy" MSG_CONS
 
 # define DRILL				"*drilling noises*"
-# define SUCCES_RBTMZD		" has succesfully been robotomized"
-# define FAILED_RBTMZD		" has failed been robotomized"
+# define SUCCES_RBTMZD		" has successfully been robotomized"
+# define FAILED_RBTMZD		" has failed to be robotomized"
 
 # define PARDON				" has been pardoned by Zaphod Beeblebrox."
 

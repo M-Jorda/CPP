@@ -5,7 +5,7 @@ using std::endl;
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery form", 145, 137), _target("Shrubby")
 {
-	cout << "Creation of standard " << endl;
+	cout << "Creation of standard Shrubby" << endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubbery form", 145, 137), _target(target)

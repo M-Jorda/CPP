@@ -5,7 +5,7 @@ using std::endl;
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy form", 72, 45), _target("Robotomy")
 {
-	cout << "Creation of standard " << endl;
+	cout << "Creation of standard Robotomy" << endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy form", 72, 45), _target(target)

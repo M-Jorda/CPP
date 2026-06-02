@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 13:07:05 by jjorda            #+#    #+#             */
-/*   Updated: 2026/06/02 16:43:47 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/02 17:04:03 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,83 +16,59 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
+#include <ctime>
+
 using std::cout;
 using std::cerr;
 using std::endl;
 
 int	main(void)
 {
-	std::srand(time(NULL));
-	cout << "=== TEST 1: Execute without signing ===" << endl;
-	try
-	{
-		Bureaucrat alice("Alice", 5);
-		PresidentialPardonForm pardon("Zaphod");
-		alice.executeForm(pardon);
-	}
-	catch(const std::exception& e)
-	{
-		cerr << "Error: " << e.what() << endl;
-	}
-	cout << endl;
+	std::srand(std::time(NULL));
 
-	cout << "=== TEST 2: Sign and execute successfully ===" << endl;
-	try
-	{
-		Bureaucrat alice("Alice", 5);
-		PresidentialPardonForm pardon("Zaphod");
-		pardon.beSigned(alice);
-		alice.executeForm(pardon);
-	}
-	catch(const std::exception& e)
-	{
-		cerr << "Error: " << e.what() << endl;
-	}
-	cout << endl;
+	cout << "=== Invalid grades at construction ===" << endl;
+	try { Bureaucrat tooHigh("Icarus", 0); }
+	catch (std::exception &e) { cerr << "Error: " << e.what() << endl; }
+	try { Bureaucrat tooLow("Mole", 151); }
+	catch (std::exception &e) { cerr << "Error: " << e.what() << endl; }
 
-	cout << "=== TEST 3: Execute with insufficient grade ===" << endl;
+	cout << "\n=== Execute an unsigned form ===" << endl;
 	try
 	{
-		Bureaucrat bob("Bob", 50);
-		PresidentialPardonForm pardon("Zaphod");
-		pardon.beSigned(bob);
-		bob.executeForm(pardon);
+		Bureaucrat boss("Boss", 1);
+		PresidentialPardonForm pardon("Arthur");
+		boss.executeForm(pardon);
 	}
-	catch(const std::exception& e)
-	{
-		cerr << "Error: " << e.what() << endl;
-	}
-	cout << endl;
+	catch (std::exception &e) { cerr << "Error: " << e.what() << endl; }
 
-	cout << "=== TEST 4: Robotomy (50% success) ===" << endl;
+	cout << "\n=== Signed, but grade too low to execute ===" << endl;
 	try
 	{
-		Bureaucrat charlie("Charlie", 20);
-		RobotomyRequestForm robotomy("Bender");
-		robotomy.beSigned(charlie);
-		charlie.executeForm(robotomy);
-		charlie.executeForm(robotomy);
-		charlie.executeForm(robotomy);
+		Bureaucrat clerk("Clerk", 20); // signs (<= 25) but can't execute (> 5)
+		PresidentialPardonForm pardon("Arthur");
+		pardon.beSigned(clerk);
+		clerk.executeForm(pardon);
 	}
-	catch(const std::exception& e)
-	{
-		cerr << "Error: " << e.what() << endl;
-	}
-	cout << endl;
+	catch (std::exception &e) { cerr << "Error: " << e.what() << endl; }
 
-	cout << "=== TEST 5: Shrubbery creation ===" << endl;
+	cout << "\n=== Each form signed and executed successfully ===" << endl;
 	try
 	{
-		Bureaucrat dave("Dave", 137);
+		Bureaucrat boss("Boss", 1);
 		ShrubberyCreationForm shrub("garden");
-		shrub.beSigned(dave);
-		dave.executeForm(shrub);
+		RobotomyRequestForm robot("Bender");
+		PresidentialPardonForm pardon("Arthur");
+
+		shrub.beSigned(boss);
+		boss.executeForm(shrub);
+
+		robot.beSigned(boss);
+		boss.executeForm(robot);
+
+		pardon.beSigned(boss);
+		boss.executeForm(pardon);
 	}
-	catch(const std::exception& e)
-	{
-		cerr << "Error: " << e.what() << endl;
-	}
-	cout << endl;
+	catch (std::exception &e) { cerr << "Error: " << e.what() << endl; }
 
 	return (0);
 }
