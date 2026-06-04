@@ -1,17 +1,26 @@
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 
+# include <iostream>
+# include <string>
+# include <cstdlib>
+# include <cmath>
+# include <cctype>
+
+# include "Macro.hpp"
+
 class	ScalarConverter
 {
 	public:
-		ScalarConverter();
-		ScalarConverter(type name);
-		ScalarConverter(const ScalarConverter &other);
-		ScalarConverter &operator=(const ScalarConverter &other);
 		~ScalarConverter();
+		static void	convert(std::string toConvert);
 
 	private:
-		type _name;
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter &other);
+		ScalarConverter &operator=(const ScalarConverter &other);
 };
+
+enum eType {CHAR, INT, DOUBLE, FLOAT, INV};
 
 #endif
