@@ -21,6 +21,9 @@ static void	printSol(eType type, std::string str)
 	case CHAR:
 		charType = "char";
 		break;
+	case INV:
+		charType = "invalid";
+		break;
 	}
 	std::cout << charType << ": " << str << std::endl;
 }
@@ -71,7 +74,8 @@ static void	printChar(double value, eType type)
 		printSol(type, IMP);
 	if (!std::isprint(value))
 		printSol(type, NONDISP);
-	printSol(type, static_cast<char>(value));
+	std::cout << "int: " << value << std::endl;
+	// printSol(type, static_cast<char>(value));
 }
 
 void	ScalarConverter::convert(std::string toConvert)
@@ -88,9 +92,11 @@ ScalarConverter::ScalarConverter()
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other)
 {
+	(void) other;
 }
 
 ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& other)
 {
+	(void) other;
     return (*this);
 }
