@@ -6,6 +6,8 @@
 # include <cstdlib>
 # include <cmath>
 # include <cctype>
+# include <limits>
+# include <iomanip>
 
 # include "Macro.hpp"
 

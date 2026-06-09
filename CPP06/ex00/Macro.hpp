@@ -3,5 +3,6 @@
 
 # define NONDISP	"Non displayable"
 # define IMP		"impossible"
+# define OF			"overflow"
 
 #endif

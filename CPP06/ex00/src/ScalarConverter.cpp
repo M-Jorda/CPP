@@ -1,32 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 12:46:44 by jjorda            #+#    #+#             */
+/*   Updated: 2026/06/09 13:15:38 by jjorda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScalarConverter.hpp"
 
 ScalarConverter::~ScalarConverter()
 {
 }
 
-static void	printSol(eType type, std::string str)
-{
-	std::string charType = NULL;
-	switch (type)
-	{
-	case INT:
-		charType = "int";
-		break;
-	case FLOAT:
-		charType = "float";
-		break;
-	case DOUBLE:
-		charType = "double";
-		break;
-	case CHAR:
-		charType = "char";
-		break;
-	case INV:
-		charType = "invalid";
-		break;
-	}
-	std::cout << charType << ": " << str << std::endl;
-}
+// static void	printSol(eType type, std::string str)
+// {
+// 	std::string charType = "";
+// 	switch (type)
+// 	{
+// 	case INT:
+// 		charType = "int";
+// 		break;
+// 	case FLOAT:
+// 		charType = "float";
+// 		break;
+// 	case DOUBLE:
+// 		charType = "double";
+// 		break;
+// 	case CHAR:
+// 		charType = "char";
+// 		break;
+// 	case INV:
+// 		charType = "invalid";
+// 		break;
+// 	}
+// 	std::cout << charType << ": " << str << std::endl;
+// }
 
 static eType	detectType(const std::string &str)
 {
@@ -57,7 +69,7 @@ static double	getDoubleValue(std::string str, eType type)
 	case CHAR:
 		return (static_cast<double>(str[1]));
 	case INT:
-		return (std::strtol(str.c_str(), &endpoint, 10));
+		// return (std::strtol(str.c_str(), &endpoint, 10));
 	case FLOAT:
 	case DOUBLE:
 		return (std::strtod(str.c_str(), &endpoint));
@@ -66,24 +78,68 @@ static double	getDoubleValue(std::string str, eType type)
 	}
 }
 
-static void	printChar(double value, eType type)
+static void	printChar(double value)
 {
-	if (std::isnan(value) || std::isinf(value))
-		printSol(type, IMP);
-	if (value < 127 && value > 0)
-		printSol(type, IMP);
-	if (!std::isprint(value))
-		printSol(type, NONDISP);
-	std::cout << "int: " << value << std::endl;
-	// printSol(type, static_cast<char>(value));
+	std::cout << "char: ";
+	if (std::isnan(value) || std::isinf(value) || (value > 127 || value < 0))
+		std::cout << IMP << std::endl;
+	else if (!std::isprint(value))
+		std::cout << NONDISP << std::endl;
+	else
+		std::cout << "'" << static_cast<char>(value) << "'" << std::endl;
+}
+
+static void	printInt(double value)
+{
+	std::cout << "int: ";
+	if (std::isnan(value) || std::isinf(value)
+			||value < std::numeric_limits<int>::min()
+			|| value > std::numeric_limits<int>::max())
+		std::cout << IMP << std::endl;
+	else
+		std::cout << static_cast<int>(value) << std::endl;
+}
+
+static void	printFloat(double value)
+{
+	std::cout << "float: ";
+	if (std::isnan(value))
+		std::cout << static_cast<float>(value) << "f" << std::endl;
+	else if (std::isinf(value))
+		std::cout << (value > 0 ? "+inff" : "-inff") << std::endl;
+	else
+		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
+}
+
+static void	printDouble(double value)
+{
+	std::cout << "double: ";
+	if (std::isnan(value))
+		std::cout << static_cast<float>(value) << "f" << std::endl;
+	else if (std::isinf(value))
+		std::cout << (value > 0 ? "+inf" : "-inf") << std::endl;
+	else
+		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(value) << std::endl;
 }
 
 void	ScalarConverter::convert(std::string toConvert)
 {
 	eType	type = detectType(toConvert);
+	if (type == INV)
+	{
+		std::cout << "char: " << IMP << std::endl;
+		std::cout << "int: " << IMP << std::endl;
+		std::cout << "float: " << IMP << std::endl;
+		std::cout << "double: " << IMP << std::endl;
+		return ;
+	}
+
 	double	value = getDoubleValue(toConvert, type);
 
-	printChar(value, type);
+	printChar(value);
+	printInt(value);
+	printFloat(value);
+	printDouble(value);
 }
 
 ScalarConverter::ScalarConverter()
