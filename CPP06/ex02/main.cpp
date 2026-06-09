@@ -1,10 +1,11 @@
 #include "Base.hpp"
 
-int	main(void)
+int main(void)
 {
-	std::srand(std::time(NULL));
+    std::srand(std::time(NULL));
 
-	Base *ba = generate();
-	identify(ba);
-
+    Base *ba = generate();
+    identify(ba);
+    identify(*ba);
+    delete ba;
 }
