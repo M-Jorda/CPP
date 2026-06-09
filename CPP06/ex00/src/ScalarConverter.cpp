@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 12:46:44 by jjorda            #+#    #+#             */
-/*   Updated: 2026/06/09 13:15:38 by jjorda           ###   ########.fr       */
+/*   Updated: 2026/06/09 13:19:55 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,6 @@
 ScalarConverter::~ScalarConverter()
 {
 }
-
-// static void	printSol(eType type, std::string str)
-// {
-// 	std::string charType = "";
-// 	switch (type)
-// 	{
-// 	case INT:
-// 		charType = "int";
-// 		break;
-// 	case FLOAT:
-// 		charType = "float";
-// 		break;
-// 	case DOUBLE:
-// 		charType = "double";
-// 		break;
-// 	case CHAR:
-// 		charType = "char";
-// 		break;
-// 	case INV:
-// 		charType = "invalid";
-// 		break;
-// 	}
-// 	std::cout << charType << ": " << str << std::endl;
-// }
 
 static eType	detectType(const std::string &str)
 {
@@ -69,7 +45,6 @@ static double	getDoubleValue(std::string str, eType type)
 	case CHAR:
 		return (static_cast<double>(str[1]));
 	case INT:
-		// return (std::strtol(str.c_str(), &endpoint, 10));
 	case FLOAT:
 	case DOUBLE:
 		return (std::strtod(str.c_str(), &endpoint));
@@ -115,11 +90,11 @@ static void	printDouble(double value)
 {
 	std::cout << "double: ";
 	if (std::isnan(value))
-		std::cout << static_cast<float>(value) << "f" << std::endl;
+		std::cout << static_cast<float>(value) << std::endl;
 	else if (std::isinf(value))
 		std::cout << (value > 0 ? "+inf" : "-inf") << std::endl;
 	else
-		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(value) << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << value << std::endl;
 }
 
 void	ScalarConverter::convert(std::string toConvert)
