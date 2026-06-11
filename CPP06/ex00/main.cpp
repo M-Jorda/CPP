@@ -1,27 +1,13 @@
 #include "ScalarConverter.hpp"
+#include <iostream>
 
-int main(void)
+int	main(int argc, char **argv)
 {
-	std::string tests[] = {
-		"'a'",
-		"0",
-		"42",
-		"42.0f",
-		"42.0",
-		"nan",
-		"nanf",
-		"+inf",
-		"-inff",
-		"999999999999999",
-		"abc"
-	};
-
-	int size = sizeof(tests) / sizeof(tests[0]);
-	for (int i = 0; i < size; i++)
+	if (argc != 2)
 	{
-		std::cout << "--- Input: " << tests[i] << " ---" << std::endl;
-		ScalarConverter::convert(tests[i]);
-		std::cout << std::endl;
+		std::cerr << "Usage: ./convert <value>" << std::endl;
+		return (1);
 	}
+	ScalarConverter::convert(std::string(argv[1]));
 	return (0);
 }

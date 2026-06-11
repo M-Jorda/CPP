@@ -1,11 +1,14 @@
 #include "Base.hpp"
 
-int main(void)
+int	main(void)
 {
-    std::srand(std::time(NULL));
+	std::srand(std::time(NULL));
 
-    Base *ba = generate();
-    identify(ba);
-    identify(*ba);
-    delete ba;
+	Base *ba = generate();
+	std::cout << "By pointer: ";
+	identify(ba);
+	std::cout << "By reference: ";
+	identify(*ba);
+	delete ba;
+	return (0);
 }

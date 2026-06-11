@@ -90,7 +90,7 @@ static void	printDouble(double value)
 {
 	std::cout << "double: ";
 	if (std::isnan(value))
-		std::cout << static_cast<float>(value) << std::endl;
+		std::cout << value << std::endl;
 	else if (std::isinf(value))
 		std::cout << (value > 0 ? "+inf" : "-inf") << std::endl;
 	else
