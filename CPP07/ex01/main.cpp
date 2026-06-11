@@ -1,23 +1,38 @@
 #include "iter.hpp"
+#include <string>
 
-static void	n1(int &n)
+static void	increment(int &n)
 {
 	n++;
 }
 
-static void print(const int &n)
+static void	printInt(const int &n)
 {
-	std::cout << n << std::endl;
+	std::cout << n << " ";
+}
+
+static void	printStr(const std::string &s)
+{
+	std::cout << s << " ";
 }
 
 int	main(void)
 {
-	int arr[] = {1, 2, 3};
-	// const int arr[] = {1, 2, 3};
-	std::cout << "Print" << std::endl;
-	iter(arr, 3, print);
-	std::cout << "n1" << std::endl;
-	iter(arr, 3, n1);
-	std::cout << "Print" << std::endl;
-	iter(arr, 3, print);
+	int arr[] = {1, 2, 3, 4, 5};
+
+	std::cout << "Before: ";
+	iter(arr, 5, printInt);
+	std::cout << std::endl;
+
+	iter(arr, 5, increment);
+	std::cout << "After increment: ";
+	iter(arr, 5, printInt);
+	std::cout << std::endl;
+
+	std::string strs[] = {"hello", "world", "42"};
+	std::cout << "Strings: ";
+	iter(strs, 3, printStr);
+	std::cout << std::endl;
+
+	return (0);
 }
