@@ -49,8 +49,9 @@ int main(void)
 	AForm* f4 = someRandomIntern.makeForm("invalid form", "nobody");
 	FormExec(f4, boss, badBoy);
 
-    delete f1;
-    delete f2;
-    delete f3;
-    delete f4;
+	delete f1;
+	delete f2;
+	delete f3;
+	delete f4;
+	return (0);
 }
