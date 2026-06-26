@@ -6,7 +6,7 @@ CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 INCLUDES	= -I. -Iinclude
 
 SRC_DIR		= src/
-SRCS		= main.cpp $(SRC_DIR)easyfind.cpp
+SRCS		= main.cpp
 
 OBJ_DIR		= obj
 OBJS		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
