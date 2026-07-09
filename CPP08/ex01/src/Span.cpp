@@ -66,13 +66,9 @@ int	Span::longestSpan()
 	return (max - min);
 }
 
-template <typename Iterator>
-void	Span::addNumbers(Iterator begin, Iterator end)
+const char	*Span::SpanTooLittle::what() const throw()
 {
-	if (begin == end)
-		throw SpanFull();
-	while (begin != end)
-		span.push_back(*begin++);
+	return ("There are too many number for the span");
 }
 
 const char	*Span::SpanFull::what() const throw()

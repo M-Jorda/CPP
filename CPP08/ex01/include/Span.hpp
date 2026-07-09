@@ -5,6 +5,7 @@
 # include <exception>
 # include <numeric>
 # include <algorithm>
+# include <iostream>
 
 class	Span
 {
@@ -22,18 +23,30 @@ class	Span
 		template <typename Iterator>
 		void	addNumbers(Iterator begin, Iterator end);
 
-		class	SpanFull : public std::exception
+		class	SpanTooLittle : public std::exception
+		{
 			public:
 				virtual const char	*what() const throw();
+		};
 
-		class	TooFewNum : public std::exception
+		class	SpanFull : public std::exception
+		{
 			public:
 				virtual const char	*what() const throw();
+		};
+		
+		class	TooFewNum : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
+		};
 
 
 	private:
 		unsigned int		_N;
 		std::vector<int>	span;
 };
+
+# include "Span.tpp"
 
 #endif
