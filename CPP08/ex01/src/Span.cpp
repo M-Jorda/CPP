@@ -13,7 +13,7 @@ Span::Span(unsigned int N) : _N(N)
 	cout << "Creation of Span" << endl;
 }
 
-Span::Span(const Span& other) : _N(other._N)
+Span::Span(const Span& other) : _N(other._N), span(other.span)
 {
 	cout << "Creation of a copy of Span" << endl;
 }
@@ -24,6 +24,7 @@ Span&	Span::operator=(const Span& other)
     {
 		cout << "Assignation of a copy of Span"<< endl;
 		_N = other._N;
+		span = other.span;
     }
     return (*this);
 }
@@ -68,7 +69,7 @@ int	Span::longestSpan()
 
 const char	*Span::SpanTooLittle::what() const throw()
 {
-	return ("There are too many number for the span");
+	return ("There are too many numbers for the span");
 }
 
 const char	*Span::SpanFull::what() const throw()

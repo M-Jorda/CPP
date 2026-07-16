@@ -127,45 +127,4 @@ int main()
 	test4();
 	cout << endl << "Test 5: addNumbers with large numbers" << endl;
 	test3and5(1000000);
-
-	// if (argc == 2)
-	// {
-	// 	int	vec_size = atoi(argv[1]);
-	
-	// 	std::vector<int> v;
-	// 	for (int i = 0; i < vec_size; i++)
-	// 		v.push_back(rand());
-		
-	// 	try
-	// 	{
-	// 		sp.addNumbers(v.begin(), v.end());
-	// 	}
-	// 	catch(const std::exception& e)
-	// 	{
-	// 		std::cerr << e.what() << '\n';
-	// 	}
-	// }
-	// else
-	// {
-	// 	for (int i = 0; i < SIZE; i++)
-	// 	sp.addNumber(rand());
-	// }
-	
-	// try
-	// {
-	// 	std::cout << sp.shortestSpan() << std::endl;
-	// 	std::cout << sp.longestSpan() << std::endl;
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
 }
-
-
-/* 1. Cas normal — span rempli avec des nombres aléatoires, afficher shortestSpan et longestSpan
-2. Span plein — tenter d'ajouter un nombre de trop avec addNumber → SpanFull
-3. Trop peu de nombres — appeler shortestSpan/longestSpan avec 0 ou 1 élément → TooFewNum
-4. addNumbers dépasse la capacité — passer une plage trop grande → SpanTooLittle
-5. Le test du sujet — exactement ce qui est dans l'énoncé : {6, 3, 17, 9, 11} → doit afficher 2 et 14
-6. Grand nombre — 10 000+ nombres aléatoires avec addNumbers*/

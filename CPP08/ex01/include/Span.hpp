@@ -1,6 +1,8 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
+# include <cstdlib>
+# include <ctime>
 # include <vector>
 # include <exception>
 # include <numeric>
