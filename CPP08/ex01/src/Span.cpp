@@ -67,7 +67,7 @@ int	Span::longestSpan()
 	return (max - min);
 }
 
-const char	*Span::SpanTooLittle::what() const throw()
+const char	*Span::SpanOverflow::what() const throw()
 {
 	return ("There are too many numbers for the span");
 }

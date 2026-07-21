@@ -53,6 +53,7 @@ static void	test2(void)
 	try
 	{
 		sp.addNumber(42);
+		sp.addNumber(42);
 	}
 	catch(const std::exception& e)
 	{
@@ -60,27 +61,14 @@ static void	test2(void)
 	}
 }
 
-static void	test3and5(int num)
+static void	testAddNumbers(unsigned int capacity, int count)
 {
-	Span sp;
-	int	sze;
-
-	if (num)
-	{
-		sp = Span(SIZE);
-		sze = SIZE + 1;
-	}
-	else
-	{
-		sp = Span(num);
-		sze = num;
-	}
-
+	Span sp(capacity);
 	std::vector<int> v;
 
-	for (int i = 0; i < sze; i++)
+	for (int i = 0; i < count; i++)
 		v.push_back(rand());
-	
+
 	try
 	{
 		sp.addNumbers(v.begin(), v.end());
@@ -122,9 +110,9 @@ int main()
 	cout << endl << "Test 2: too much" << endl;
 	test2();
 	cout << endl << "Test 3: addNumbers too many" << endl;
-	test3and5(0);
+	testAddNumbers(5, 10);
 	cout << endl << "Test 4: normal 42 use" << endl;
 	test4();
 	cout << endl << "Test 5: addNumbers with large numbers" << endl;
-	test3and5(1000000);
+	testAddNumbers(SIZE, SIZE + 1);
 }

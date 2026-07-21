@@ -11,10 +11,9 @@ MutantStack<T, Container>::MutantStack()
 }
 
 template <typename T, typename Container>
-MutantStack<T, Container>::MutantStack(const MutantStack &other)
+MutantStack<T, Container>::MutantStack(const MutantStack &other) : std::stack<T, Container>(other)
 {
 	cout << "Creation of a copy of mutant stack" << endl;
-	this->c = other.c;
 }
 
 template <typename T, typename Container>
