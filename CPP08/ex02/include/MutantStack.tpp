@@ -14,7 +14,7 @@ template <typename T, typename Container>
 MutantStack<T, Container>::MutantStack(const MutantStack &other)
 {
 	cout << "Creation of a copy of mutant stack" << endl;
-	this->c = other->c;
+	this->c = other.c;
 }
 
 template <typename T, typename Container>
@@ -23,7 +23,7 @@ MutantStack<T, Container>&	MutantStack<T, Container>::operator=(const MutantStac
 	if (this != &other)
 	{
 		cout << "Assignation of a copy of mutant stack" << endl;
-		this->c = other->c;
+		this->c = other.c;
 	}
 	return (*this);
 }
