@@ -28,9 +28,9 @@ int	main(int argc, char **argv)
 
 		while (std::getline(file, line))
 		{
-			size_t		pos = line.find(" | ");
+			size_t		pos = line.find(",");
 			std::string	date = line.substr(0, pos);
-			float		value = std::atof(line.substr(pos + 3).c_str());
+			float		value = std::atof(line.substr(pos + 1).c_str());
 			try
 			{
 				if (!BitcoinExchange::isValidDate(date))

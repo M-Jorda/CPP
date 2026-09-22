@@ -100,7 +100,10 @@ static bool	validCalendarValue(std::string date)
 bool		BitcoinExchange::isValidDate(std::string const &date)
 {
 	if (date.size() != DATE_LEN || date[4] != '-' || date[7] != '-')
+	{
+		cout << "ERR1" << endl;
 		return (false);
+	}
 
 	for (int i = 0; i < DATE_LEN; i++)
 	{
@@ -109,10 +112,16 @@ bool		BitcoinExchange::isValidDate(std::string const &date)
 			if (date[i] == '-')
 				i++;
 			else
+			{
+				cout << "ERR2, i = " << i << endl;
 				return (false);
+			}
 		}
 		if (!std::isdigit(static_cast<unsigned char>(date[i])))
+		{
+			cout << "ERR3" << endl;
 			return (false);
+		}
 	}
 
 	return  (validCalendarValue(date));
