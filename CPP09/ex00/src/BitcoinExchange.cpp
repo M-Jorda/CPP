@@ -4,55 +4,34 @@ using std::cout;
 using std::endl;
 
 BitcoinExchange::BitcoinExchange()
-{
-	cout << "creation af standard BitcoinExchange" << endl;
-}
+{}
 
 BitcoinExchange::BitcoinExchange(std::string dbPath)
 {
-	cout << "Creation of BitcoinExchange" << endl;
 	_loadDb(dbPath);
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
-{
-	cout << "Creation of a copy of BitcoinExchange" << endl;
-	_rates = other._rates;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : _rates(other._rates)
+{}
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
 	if (this != &other)
-	{
-		cout << "Assignation of a copy of BitcoinExchange" << endl;
 		_rates = other._rates;
-	}
 	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange()
-{
-	cout << "Destruction of BitcoinExchange" << endl;
-}
+{}
 
 float	BitcoinExchange::getRate(std::string const &date) const
 {
 	std::map<std::string, float>::const_iterator it = _rates.lower_bound(date);
-	if (it->first == date)
+	if (it != _rates.end() && it->first == date)
 		return (it->second);
-	if ((it != _rates.end() && it->first != date) || it ==_rates.end())
-		return ((--it)->second);
-	if (it  == _rates.begin() && it->first != date)
+	if (it  == _rates.begin())
 		throw Date404();
-	return (0);
-}
-
-void	BitcoinExchange::printRates()
-{
-	std::map<std::string, float>::const_iterator it;
-
-	for ((it = _rates.begin()); it != _rates.end(); it++)
-		cout << it->first << " => " << it->second << endl;
+	return ((--it)->second);
 }
 
 void	BitcoinExchange::checkValue(float const &value)
@@ -100,10 +79,7 @@ static bool	validCalendarValue(std::string date)
 bool		BitcoinExchange::isValidDate(std::string const &date)
 {
 	if (date.size() != DATE_LEN || date[4] != '-' || date[7] != '-')
-	{
-		cout << "ERR1" << endl;
 		return (false);
-	}
 
 	for (int i = 0; i < DATE_LEN; i++)
 	{
@@ -112,16 +88,10 @@ bool		BitcoinExchange::isValidDate(std::string const &date)
 			if (date[i] == '-')
 				i++;
 			else
-			{
-				cout << "ERR2, i = " << i << endl;
 				return (false);
-			}
 		}
 		if (!std::isdigit(static_cast<unsigned char>(date[i])))
-		{
-			cout << "ERR3" << endl;
 			return (false);
-		}
 	}
 
 	return  (validCalendarValue(date));
@@ -148,7 +118,7 @@ const char	*BitcoinExchange::InvDate::what() const throw()
 
 const char	*BitcoinExchange::Date404::what() const throw()
 {
-	return ("Error: Could'nt find an appropriate date");
+	return ("Error: Couldn't find an appropriate date");
 }
 
 const char	*BitcoinExchange::InvValueNeg::what() const throw()
@@ -160,53 +130,6 @@ const char	*BitcoinExchange::InvValueBig::what() const throw()
 {
 	return ("Error: too large a number.");
 };
-
-// static void	areValidValue(std::string date, float value, std::string line)
-// {
-// 	if (!BitcoinExchange::isValidDate(date))
-// 		throw (BitcoinExchange::InvDate(line));
-// 	if (value < 0)
-// 		throw BitcoinExchange::InvValueNeg();
-// 	if (value > 1000)
-// 		throw BitcoinExchange::InvValueBig();
-// }
-
-// void	BitcoinExchange::parseFile(std::string name, std::string separator)
-// {
-// 	std::ifstream	file(name.c_str());
-// 	if (!file.is_open())
-// 		throw BitcoinExchange::InvFile();
-
-// 	std::string	line;
-// 	std::getline(file, line);
-
-// 	while (std::getline(file, line))
-// 	{
-// 		size_t		pos = line.find(separator);
-// 		std::string	date = line.substr(0, pos);
-// 		float		value = std::atof(line.substr(pos + 1).c_str());
-
-// 		if (separator == " | ")
-// 		{
-// 			try
-// 			{
-// 				cout << "test1" << endl;
-// 				areValidValue(date, value, line);
-// 				_rates[date] = value;
-// 				getRate(date);
-// 			}
-// 			catch(const std::exception& e)
-// 			{
-// 				file.close();
-// 				std::cerr << e.what() << '\n';
-// 			}
-// 		}
-// 		else
-// 			_data[date] = value;
-// 		cout << "test2" << endl;
-// 	}
-// 	file.close();
-// }
 
 void	BitcoinExchange::_loadDb(std::string const &path)
 {

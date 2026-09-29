@@ -22,7 +22,6 @@ class BitcoinExchange
 		~BitcoinExchange();
 
 		float	getRate(std::string const &date) const;
-		void	printRates();
 
 		static void	checkValue(float const &value);
 		static bool	isValidDate(std::string const &date);

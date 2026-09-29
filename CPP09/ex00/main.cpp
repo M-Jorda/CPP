@@ -4,33 +4,37 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
-static int	err()
+static int	err(int err)
 {
-	cerr << "Error: could not open file" << endl;
+	if (err == 1)
+		cerr << "Error: could not open file." << endl;
+	else
+		cerr << "Error: header missing." << endl;
 	return (1);
 }
 
 int	main(int argc, char **argv)
 {
-	(void)argv;
 	if (argc != 2)
-		return (err());
+		return (err(1));
 
 	try
 	{
 		BitcoinExchange btc("data.csv");
 		std::ifstream	file(argv[1]);
 		if (!file.is_open())
-			return (err());
+			return (err(1));
 
 		std::string	line;
 		std::getline(file, line);
+		if (line != "date | value")
+			return (err(2));
 
 		while (std::getline(file, line))
 		{
-			size_t		pos = line.find(",");
+			size_t		pos = line.find(" | ");
 			std::string	date = line.substr(0, pos);
-			float		value = std::atof(line.substr(pos + 1).c_str());
+			float		value = std::atof(line.substr(pos + 3).c_str());
 			try
 			{
 				if (!BitcoinExchange::isValidDate(date))
