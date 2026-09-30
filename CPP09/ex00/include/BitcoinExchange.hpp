@@ -7,6 +7,9 @@
 # include <map>
 # include <exception>
 # include <cstdlib>
+# include <algorithm>
+# include <iomanip>
+# include <cctype>
 
 # define DATE_LEN	10
 # define LONG_MESS	31
@@ -21,15 +24,39 @@ class BitcoinExchange
 		BitcoinExchange &operator=(const BitcoinExchange &other);
 		~BitcoinExchange();
 
-		float	getRate(std::string const &date) const;
+		double	getRate(std::string const &date) const;
 
-		static void	checkValue(float const &value);
+		static void	checkValue(double const &value);
 		static bool	isValidDate(std::string const &date);
+		static bool	isValidValue(std::string const &s);
 
 		class InvFile : public std::exception
 		{
 			public:
 				virtual const char	*what() const throw();
+		};
+
+		class InvDB : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
+		};
+
+		class EmptyDB : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
+		};
+
+		class InvDBLine : public std::exception
+		{
+			public:
+				InvDBLine(std::string const &line);
+				~InvDBLine() throw();
+				virtual const char	*what() const throw();
+
+				private:
+					std::string _msg;
 		};
 
 		class InvDate : public std::exception
@@ -62,7 +89,7 @@ class BitcoinExchange
 		};
 
 	private:
-		std::map<std::string, float> _rates;
+		std::map<std::string, double> _rates;
 
 		void	_loadDb(std::string const &path);
 };

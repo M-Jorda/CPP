@@ -4,53 +4,58 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
-static int	err(int err)
-{
-	if (err == 1)
-		cerr << "Error: could not open file." << endl;
-	else
-		cerr << "Error: header missing." << endl;
-	return (1);
-}
-
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
-		return (err(1));
-
 	try
 	{
+		if (argc != 2)
+			throw (BitcoinExchange::InvFile());
 		BitcoinExchange btc("data.csv");
 		std::ifstream	file(argv[1]);
 		if (!file.is_open())
-			return (err(1));
+			throw (BitcoinExchange::InvFile());
 
 		std::string	line;
-		std::getline(file, line);
-		if (line != "date | value")
-			return (err(2));
+		bool		first = true;
+		cout << std::setprecision(10);
 
 		while (std::getline(file, line))
 		{
-			size_t		pos = line.find(" | ");
-			std::string	date = line.substr(0, pos);
-			float		value = std::atof(line.substr(pos + 3).c_str());
+			if (first)
+			{
+				first = false;
+				if (line == "date | value")
+					continue;
+			}
 			try
 			{
+				size_t		pos = line.find(" | ");
+				if (pos == std::string::npos)
+					throw (BitcoinExchange::InvDate(line));
+
+				std::string	date = line.substr(0, pos);
+				std::string val = line.substr(pos + 3);
+				if (!BitcoinExchange::isValidValue(val))
+					throw (BitcoinExchange::InvDate(line));
+				double		value = std::atof(val.c_str());
+				if (value == 0)
+					value = 0;
+				
 				if (!BitcoinExchange::isValidDate(date))
 					throw (BitcoinExchange::InvDate(line));
 				BitcoinExchange::checkValue(value);
-				float rate = btc.getRate(date);
-			cout << date << " => " << value << " = " << (value * rate) << endl;
+				double rate = btc.getRate(date);
+				cout << date << " => " << value << " = " << (value * rate) << endl;
 			}
 			catch(const std::exception& e)
 			{
-				std::cerr << e.what() << '\n';
+				cerr << e.what() << '\n';
 			}
 		}
 	}
 	catch(const std::exception& e)
 	{
 		cerr << e.what() << '\n';
+		return (1);
 	}
 }

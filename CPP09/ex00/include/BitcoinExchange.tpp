@@ -1,6 +1,0 @@
-#ifndef BITCOINEXCHANGE_TPP
-# define BITCOINEXCHANGE_TPP
-
-
-
-#endif
