@@ -11,12 +11,11 @@ class	RPN
 {
 	public:
 		RPN();
-		RPN(std::stack<int, std::list<int> > stack);
 		RPN(const RPN &other);
 		RPN &operator=(const RPN &other);
 		~RPN();
 
-		int	calculate(std::string str);
+		int	calculate(std::string const &str);
 
 		class	UsageError : public std::runtime_error
 		{

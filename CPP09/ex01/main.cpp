@@ -30,12 +30,12 @@ int main(int argc, char **argv)
 	}
 	catch(RPN::UsageError const &e)
 	{
-		cerr << e.what() << endl;
+		cerr << "Error: " << e.what() << endl;
 		return (2);
 	}
 	catch(RPN::ExpressionError const &e)
 	{
-		cerr << e.what() << endl;
+		cerr << "Error: " << e.what() << endl;
 		return (1);
 	}
 	catch(const std::exception& e)
@@ -43,6 +43,6 @@ int main(int argc, char **argv)
 		cerr << "Error: " << e.what() << endl;
 		return (1);
 	}
-	
+
 	return (0);
 }

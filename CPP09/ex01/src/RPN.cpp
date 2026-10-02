@@ -1,8 +1,11 @@
 #include "RPN.hpp"
 
-RPN::RPN() {}
+#include <sstream>
+#include <cctype>
 
-RPN::RPN(std::stack<int, std::list<int> > stack) : _stack(stack) {}
+#define INVEXPR	"invalid expression"
+
+RPN::RPN() {}
 
 RPN::RPN(const RPN& other) : _stack(other._stack) {}
 
@@ -17,14 +20,77 @@ RPN&	RPN::operator=(const RPN& other)
 
 RPN::~RPN() {}
 
-int	RPN::calculate(std::string str)
+static int	popValue(std::stack<int, std::list<int> > &stack)
 {
-	int	r = 0;
-	(void) str;
-	return (r);
+	int	v = stack.top();
+	stack.pop();
+	return (v);
 }
 
-RPN::UsageError::UsageError() : std::runtime_error("Error: usage: ./RPN \"<expression>\"") {}
+static void	pushNumber(std::stack<int, std::list<int> > &stack, std::string const &token)
+{
+	int num;
+
+	if (token.size() == 2)
+		num = (token[1] - '0') * -1;
+	else
+		num = token[0] - '0';
+	stack.push(num);
+}
+
+static void	applyOperator(std::stack<int, std::list<int> > &stack, std::string const &token)
+{
+	if (stack.size() > 1)
+	{
+		int	v2 = popValue(stack);
+		int v1 = popValue(stack);
+		int r;
+
+		switch (token[0])
+		{
+		case '-':
+			r = v1 - v2;
+			break ;
+		case '+':
+			r = v1 + v2;
+			break ;
+		case '/':
+			r = v1 / v2;
+			break ;
+		case '*':
+			r = v1 * v2;
+			break ;
+		default :
+			throw (RPN::ExpressionError("Unknown operator"));
+		}
+		stack.push(r);
+	}
+	else
+		throw (RPN::ExpressionError("not enough operands"));
+}
+
+int	RPN::calculate(std::string const &str)
+{
+	while (!_stack.empty())
+		_stack.pop();
+	std::istringstream	iss(str);
+	std::string			token;
+	while (iss >> token)
+	{
+		if ((token.size() == 2 && token[0] == '-' && std::isdigit((unsigned char) token[1])) 
+				|| (token.size() == 1 && std::isdigit((unsigned char) token[0])))
+			pushNumber(_stack, token);
+		else if (token == "+" || token == "-" || token == "/" || token == "*")
+			applyOperator(_stack, token);
+		else
+			throw (ExpressionError("invalid token \"" + token + "\""));
+	}
+	if (_stack.size() != 1)
+		throw (ExpressionError(INVEXPR));
+	return (_stack.top());
+}
+
+RPN::UsageError::UsageError() : std::runtime_error("usage: ./RPN \"<expression>\"") {}
 
 RPN::UsageError::UsageError(std::string const &msg) : std::runtime_error(msg) {}
 
@@ -39,7 +105,7 @@ RPN::UsageError	&RPN::UsageError::operator=(UsageError const &other)
 RPN::UsageError::~UsageError() throw() {}
 
 
-RPN::ExpressionError::ExpressionError() : std::runtime_error("Error: expression error.") {}
+RPN::ExpressionError::ExpressionError() : std::runtime_error(INVEXPR) {}
 
 RPN::ExpressionError::ExpressionError(std::string const &msg) : std::runtime_error(msg) {}
 
