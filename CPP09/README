@@ -1,0 +1,50 @@
+# C++ Module 09 — STL
+
+Three exercises solved with STL containers in C++98. Rule of the module: a
+container used in one exercise cannot be reused in the following ones.
+
+| Exercise | Program | Topic | Containers |
+|---|---|---|---|
+| ex00 | `btc` | Bitcoin exchange rate lookup | `std::map`, `std::set` |
+| ex01 | `RPN` | Reverse Polish Notation calculator | `std::stack` on `std::list` |
+| ex02 | `PmergeMe` | Merge-insertion sort | to be documented |
+
+---
+
+## ex01 — RPN
+
+Evaluates a postfix expression, where each operator follows its two operands
+(`3 4 +` means `3 + 4`).
+
+```sh
+$> ./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+42
+$> ./RPN "3 9 -"
+-6
+$> ./RPN "(1 + 1)"
+Error: invalid token "(1"
+```
+
+**Input.** One quoted argument. Tokens are separated by spaces or tabs.
+Numbers are single digits, optionally negative (`-9` to `9`). Operators:
+`+ - * /` (integer division).
+
+**Errors.** Written to the standard error, prefixed with `Error: `.
+
+| Exit code | Cause |
+|---|---|
+| `0` | success, result on the standard output |
+| `1` | invalid token, not enough operands, invalid expression, division by zero, integer overflow |
+| `2` | wrong usage: no argument, several arguments, empty or blank argument |
+
+**Design.**
+
+- `main` checks the arguments and prints; the `RPN` class only computes.
+- Tokens are read with `std::istringstream`, then pushed on a
+  `std::stack<int, std::list<int> >`. `std::list` keeps `std::deque`, the
+  default, free for ex02.
+- Each operator pops the right operand first, then the left one.
+- Operations are computed in `long`, then checked against the `int` limits
+  (assumes an 8-byte `long`, as on 64-bit Linux and macOS).
+- Two exception classes, `UsageError` and `ExpressionError`, map to exit
+  codes `2` and `1`.
