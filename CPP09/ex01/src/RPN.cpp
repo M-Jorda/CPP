@@ -1,10 +1,10 @@
 #include "RPN.hpp"
 
-RPN::RPN()
-{}
+RPN::RPN() {}
 
-RPN::RPN(const RPN& other) : _stack(other._stack)
-{}
+RPN::RPN(std::stack<int, std::list<int> > stack) : _stack(stack) {}
+
+RPN::RPN(const RPN& other) : _stack(other._stack) {}
 
 RPN&	RPN::operator=(const RPN& other)
 {
@@ -15,8 +15,7 @@ RPN&	RPN::operator=(const RPN& other)
 	return (*this);
 }
 
-RPN::~RPN()
-{}
+RPN::~RPN() {}
 
 int	RPN::calculate(std::string str)
 {
@@ -25,7 +24,7 @@ int	RPN::calculate(std::string str)
 	return (r);
 }
 
-RPN::UsageError::UsageError() : std::runtime_error("Error: usage error.") {}
+RPN::UsageError::UsageError() : std::runtime_error("Error: usage: ./RPN \"<expression>\"") {}
 
 RPN::UsageError::UsageError(std::string const &msg) : std::runtime_error(msg) {}
 
@@ -37,8 +36,7 @@ RPN::UsageError	&RPN::UsageError::operator=(UsageError const &other)
 	return (*this);
 }
 
-RPN::UsageError::~UsageError() throw()
-{}
+RPN::UsageError::~UsageError() throw() {}
 
 
 RPN::ExpressionError::ExpressionError() : std::runtime_error("Error: expression error.") {}
@@ -53,5 +51,4 @@ RPN::ExpressionError	&RPN::ExpressionError::operator=(ExpressionError const &oth
 	return (*this);
 }
 
-RPN::ExpressionError::~ExpressionError() throw()
-{}
+RPN::ExpressionError::~ExpressionError() throw() {}

@@ -11,6 +11,7 @@ class	RPN
 {
 	public:
 		RPN();
+		RPN(std::stack<int, std::list<int> > stack);
 		RPN(const RPN &other);
 		RPN &operator=(const RPN &other);
 		~RPN();
