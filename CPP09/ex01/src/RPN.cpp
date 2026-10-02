@@ -21,14 +21,14 @@ RPN&	RPN::operator=(const RPN& other)
 
 RPN::~RPN() {}
 
-static int	popValue(RPN::stackTable &stack)
+static int	popValue(RPN::Stack &stack)
 {
 	int	v = stack.top();
 	stack.pop();
 	return (v);
 }
 
-static void	pushNumber(RPN::stackTable &stack, std::string const &token)
+static void	pushNumber(RPN::Stack &stack, std::string const &token)
 {
 	int num;
 
@@ -39,7 +39,7 @@ static void	pushNumber(RPN::stackTable &stack, std::string const &token)
 	stack.push(num);
 }
 
-static void	applyOperator(RPN::stackTable &stack, std::string const &token)
+static void	applyOperator(RPN::Stack &stack, std::string const &token)
 {
 	if (stack.size() > 1)
 	{
@@ -83,7 +83,7 @@ static bool	isNumber(std::string const &token)
 	return (false);
 }
 
-static bool	isoperator(std::string const &token)
+static bool	isOperator(std::string const &token)
 {
 	if (token == "+" || token == "-" || token == "/" || token == "*")
 		return (true);
@@ -100,7 +100,7 @@ int	RPN::calculate(std::string const &str)
 	{
 		if (isNumber(token))
 			pushNumber(_stack, token);
-		else if (isoperator(token))
+		else if (isOperator(token))
 			applyOperator(_stack, token);
 		else
 			throw (ExpressionError("invalid token \"" + token + "\""));

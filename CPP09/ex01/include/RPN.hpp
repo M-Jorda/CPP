@@ -36,10 +36,10 @@ class	RPN
 				~ExpressionError() throw();
 		};
 
-		typedef std::stack<int, std::list<int> > stackTable;
+		typedef std::stack<int, std::list<int> > Stack;
 
 	private:
-		stackTable	_stack;
+		Stack	_stack;
 };
 
 #endif
