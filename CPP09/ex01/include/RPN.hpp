@@ -6,7 +6,6 @@
 # include <string>
 # include <stdexcept>
 
-
 class	RPN
 {
 	public:
@@ -37,8 +36,10 @@ class	RPN
 				~ExpressionError() throw();
 		};
 
+		typedef std::stack<int, std::list<int> > stackTable;
+
 	private:
-		std::stack<int, std::list<int> >	_stack;
+		stackTable	_stack;
 };
 
 #endif

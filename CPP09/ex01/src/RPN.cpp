@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <cctype>
+#include <climits>
 
 #define INVEXPR	"invalid expression"
 
@@ -20,14 +21,14 @@ RPN&	RPN::operator=(const RPN& other)
 
 RPN::~RPN() {}
 
-static int	popValue(std::stack<int, std::list<int> > &stack)
+static int	popValue(RPN::stackTable &stack)
 {
 	int	v = stack.top();
 	stack.pop();
 	return (v);
 }
 
-static void	pushNumber(std::stack<int, std::list<int> > &stack, std::string const &token)
+static void	pushNumber(RPN::stackTable &stack, std::string const &token)
 {
 	int num;
 
@@ -38,13 +39,14 @@ static void	pushNumber(std::stack<int, std::list<int> > &stack, std::string cons
 	stack.push(num);
 }
 
-static void	applyOperator(std::stack<int, std::list<int> > &stack, std::string const &token)
+static void	applyOperator(RPN::stackTable &stack, std::string const &token)
 {
 	if (stack.size() > 1)
 	{
-		int	v2 = popValue(stack);
-		int v1 = popValue(stack);
-		int r;
+		// v2 before v1, because of LIFO
+		long	v2 = popValue(stack);
+		long	v1 = popValue(stack);
+		long	r;
 
 		switch (token[0])
 		{
@@ -55,6 +57,8 @@ static void	applyOperator(std::stack<int, std::list<int> > &stack, std::string c
 			r = v1 + v2;
 			break ;
 		case '/':
+			if (v2 == 0)
+				throw (RPN::ExpressionError("division by zero"));
 			r = v1 / v2;
 			break ;
 		case '*':
@@ -63,10 +67,27 @@ static void	applyOperator(std::stack<int, std::list<int> > &stack, std::string c
 		default :
 			throw (RPN::ExpressionError("Unknown operator"));
 		}
-		stack.push(r);
+		if (r > INT_MAX || r < INT_MIN)
+			throw (RPN::ExpressionError("integer overflow"));
+		stack.push(static_cast<int>(r));
 	}
 	else
 		throw (RPN::ExpressionError("not enough operands"));
+}
+
+static bool	isNumber(std::string const &token)
+{
+	if ((token.size() == 2 && token[0] == '-' && std::isdigit((unsigned char) token[1])) 
+			|| (token.size() == 1 && std::isdigit((unsigned char) token[0])))
+		return (true);
+	return (false);
+}
+
+static bool	isoperator(std::string const &token)
+{
+	if (token == "+" || token == "-" || token == "/" || token == "*")
+		return (true);
+	return (false);
 }
 
 int	RPN::calculate(std::string const &str)
@@ -77,10 +98,9 @@ int	RPN::calculate(std::string const &str)
 	std::string			token;
 	while (iss >> token)
 	{
-		if ((token.size() == 2 && token[0] == '-' && std::isdigit((unsigned char) token[1])) 
-				|| (token.size() == 1 && std::isdigit((unsigned char) token[0])))
+		if (isNumber(token))
 			pushNumber(_stack, token);
-		else if (token == "+" || token == "-" || token == "/" || token == "*")
+		else if (isoperator(token))
 			applyOperator(_stack, token);
 		else
 			throw (ExpressionError("invalid token \"" + token + "\""));
