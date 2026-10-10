@@ -4,6 +4,12 @@
 #include <cstdlib>
 #include <cerrno>
 
+#define ERR	"Error: "
+#define INV	"invalid number \""
+#define OOR	"out of range \""
+#define NEG	"not a positive integer \""
+#define END	"\""
+
 using	std::cout;
 using	std::cerr;
 using	std::endl;
@@ -43,13 +49,13 @@ static std::vector<std::string>	validate(int argc, char **argv)
 		{
 			std::ostringstream	out;
 			if (!isValidNumber(word))
-				throw PmergeMe::InputError("invalid number \"" + word +  "\"");
+				throw PmergeMe::InputError(INV + word + END);
 			errno = 0;
 			num = std::strtol(word.c_str(), NULL, 10);
 			if (errno == ERANGE)
-				throw PmergeMe::InputError("out of range \"" + word +  "\"");
+				throw PmergeMe::InputError(OOR + word + END);
 			if (num <= 0)
-				throw PmergeMe::InputError("not a positive integer \"" + word +  "\"");
+				throw PmergeMe::InputError(NEG + word + END);
 			out << num;
 			values.push_back(out.str());
 		}
@@ -70,17 +76,17 @@ int	main(int argc, char **argv)
 	}
 	catch(const PmergeMe::UsageError &e)
 	{
-		cerr << "Error: " << e.what() << endl;
+		cerr << ERR << e.what() << endl;
 		return (2);
 	}
 	catch(const PmergeMe::InputError &e)
 	{
-		cerr << "Error: " << e.what() << endl;
+		cerr << ERR << e.what() << endl;
 		return (1);
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Error: " << e.what() << endl;
+		std::cerr << ERR << e.what() << endl;
 		return (1);
 	}
 }

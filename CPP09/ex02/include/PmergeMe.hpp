@@ -46,8 +46,24 @@ class	PmergeMe
 		std::deque<long>			_deq;
 		double						_timeVec;
 		double						_timeDeq;
+		size_t						_comparison;
 		
+		struct	Element
+		{
+			long	value;
+			size_t	id;
+		};
+	
 		PmergeMe();
+
+		bool					lessThan(const Element &a, const Element &b);
+		void					mergeInsertVec(std::vector<Element> &elems);
+		void					makePairs(std::vector<Element> &elems,
+					std::vector<Element> &larges, std::vector<Element> &partner);
+		std::vector<Element>	buildChain(std::vector<Element> &larges,
+					std::vector<Element> &partner);
+		void					insertLinear(std::vector<Element> &chain,
+					const Element &elem);
 };
 
 #endif
