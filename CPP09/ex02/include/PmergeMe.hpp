@@ -62,7 +62,7 @@ class	PmergeMe
 					std::vector<Element> &larges, std::vector<Element> &partner);
 		std::vector<Element>	buildChain(std::vector<Element> &larges,
 					std::vector<Element> &partner);
-		void					insertLinear(std::vector<Element> &chain,
+		void					insertDichotomie(std::vector<Element> &chain,
 					const Element &elem);
 };
 

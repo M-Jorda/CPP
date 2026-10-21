@@ -122,18 +122,33 @@ bool	PmergeMe::lessThan(const Element &a, const Element &b)
 	return (a.value < b.value);
 }
 
-void	PmergeMe::insertLinear(std::vector<Element> &chain, const Element &elem)
+void	PmergeMe::insertDichotomie(std::vector<Element> &chain, const Element &elem)
 {
-	for (size_t i = 0; i < chain.size(); i++)
+	int	low = 0, high = chain.size();
+
+	while (low < high)
 	{
-		if (lessThan(elem, chain[i]))
-		{
-			chain.insert(chain.begin() + i, elem);
-			return ;
-		}
+		int	mid = (low + high) / 2;
+		if (lessThan(elem, chain[mid]))
+			high = mid;
+		else
+			low = mid + 1;
 	}
-	chain.insert(chain.end(), elem);
+	chain.insert(chain.begin() + low, elem);
 }
+
+// void	PmergeMe::insertLinear(std::vector<Element> &chain, const Element &elem)
+// {
+// 	for (size_t i = 0; i < chain.size(); i++)
+// 	{
+// 		if (lessThan(elem, chain[i]))
+// 		{
+// 			chain.insert(chain.begin() + i, elem);
+// 			return ;
+// 		}
+// 	}
+// 	chain.insert(chain.end(), elem);
+// }
 
 void	PmergeMe::makePairs(std::vector<Element> &elems, std::vector<Element> &larges,
 		std::vector<Element> &partner)
@@ -162,7 +177,7 @@ std::vector<PmergeMe::Element>	PmergeMe::buildChain(std::vector<Element> &larges
 	for (size_t i = 1; i < larges.size(); i++)
 	{
 		chain.push_back(larges[i]);
-		insertLinear(chain, partner[larges[i].id]);
+		insertDichotomie(chain, partner[larges[i].id]);
 	}
 	return (chain);
 }
@@ -191,6 +206,6 @@ void	PmergeMe::mergeInsertVec(std::vector<Element> &elems)
 	mergeInsertVec(larges);
 	chain = buildChain(larges, partner);
 	if (hasStraggler)
-		insertLinear(chain, odd);
+		insertDichotomie(chain, odd);
 	elems = chain;
 }
