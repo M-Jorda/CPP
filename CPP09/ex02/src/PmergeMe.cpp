@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <algorithm>
+#include <cstdlib>
 
 #define ERRUSAGE	"usage: ./PmergeMe <positive integers>"
 #define INPUSAGE	"input error"
@@ -51,7 +52,7 @@ void	PmergeMe::vectorSort()
 		elem.id = i;
 		vec.push_back(elem);
 	}
-	mergeInsertVec(vec);
+	mergeInsert(vec);
 	for (size_t i = 0; i < _values.size(); i++)
 		_vec.push_back(vec[i].value);
 }
@@ -122,13 +123,14 @@ bool	PmergeMe::lessThan(const Element &a, const Element &b)
 	return (a.value < b.value);
 }
 
-void	PmergeMe::insertDichotomie(std::vector<Element> &chain, const Element &elem)
+void	PmergeMe::binaryInsert(std::vector<Element> &chain, const Element &elem,
+		size_t high)
 {
-	int	low = 0, high = chain.size();
+	size_t	low = 0;
 
 	while (low < high)
 	{
-		int	mid = (low + high) / 2;
+		size_t	mid = (low + high) / 2;
 		if (lessThan(elem, chain[mid]))
 			high = mid;
 		else
@@ -136,19 +138,6 @@ void	PmergeMe::insertDichotomie(std::vector<Element> &chain, const Element &elem
 	}
 	chain.insert(chain.begin() + low, elem);
 }
-
-// void	PmergeMe::insertLinear(std::vector<Element> &chain, const Element &elem)
-// {
-// 	for (size_t i = 0; i < chain.size(); i++)
-// 	{
-// 		if (lessThan(elem, chain[i]))
-// 		{
-// 			chain.insert(chain.begin() + i, elem);
-// 			return ;
-// 		}
-// 	}
-// 	chain.insert(chain.end(), elem);
-// }
 
 void	PmergeMe::makePairs(std::vector<Element> &elems, std::vector<Element> &larges,
 		std::vector<Element> &partner)
@@ -177,13 +166,13 @@ std::vector<PmergeMe::Element>	PmergeMe::buildChain(std::vector<Element> &larges
 	for (size_t i = 1; i < larges.size(); i++)
 	{
 		chain.push_back(larges[i]);
-		insertDichotomie(chain, partner[larges[i].id]);
+		binaryInsert(chain, partner[larges[i].id], chain.size());
 	}
 	return (chain);
 }
 
 
-void	PmergeMe::mergeInsertVec(std::vector<Element> &elems)
+void	PmergeMe::mergeInsert(std::vector<Element> &elems)
 {
 	std::vector<Element>	partner(_values.size());
 	std::vector<Element>	larges;
@@ -203,9 +192,9 @@ void	PmergeMe::mergeInsertVec(std::vector<Element> &elems)
 	else
 		hasStraggler = false;
 	makePairs(elems, larges, partner);
-	mergeInsertVec(larges);
+	mergeInsert(larges);
 	chain = buildChain(larges, partner);
 	if (hasStraggler)
-		insertDichotomie(chain, odd);
+		binaryInsert(chain, odd, chain.size());
 	elems = chain;
 }

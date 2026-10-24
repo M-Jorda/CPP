@@ -57,13 +57,13 @@ class	PmergeMe
 		PmergeMe();
 
 		bool					lessThan(const Element &a, const Element &b);
-		void					mergeInsertVec(std::vector<Element> &elems);
+		void					mergeInsert(std::vector<Element> &elems);
 		void					makePairs(std::vector<Element> &elems,
 					std::vector<Element> &larges, std::vector<Element> &partner);
 		std::vector<Element>	buildChain(std::vector<Element> &larges,
 					std::vector<Element> &partner);
-		void					insertDichotomie(std::vector<Element> &chain,
-					const Element &elem);
+		void					binaryInsert(std::vector<Element> &chain,
+					const Element &elem, size_t high);
 };
 
 #endif
