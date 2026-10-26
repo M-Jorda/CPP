@@ -27,6 +27,8 @@ Error: bad input => 2001-42-42
 Error: too large a number.
 $> ./btc
 Error: could not open file.
+$> ./btc a.txt b.txt
+Error: usage: ./btc <file>
 ```
 
 **Input.** One argument: a file with one `date | value` line per entry. A
@@ -40,11 +42,13 @@ positive rate, and it cannot be empty.
 
 **Errors.** Written to the standard error, prefixed with `Error: `. A bad
 input line prints its error and the program goes on with the next one.
+Without argument, the message is the subject's `could not open file.`; with
+more than one, a usage message.
 
 | Exit code | Cause |
 |---|---|
 | `0` | input file read to the end, even if some lines were invalid |
-| `1` | wrong usage, input file or database missing, bad database line, empty database |
+| `1` | wrong usage, input file or database missing or unreadable (a directory, for instance), bad database line, empty database |
 
 **Design.**
 
@@ -74,7 +78,8 @@ $> ./RPN "(1 + 1)"
 Error: invalid token "(1"
 ```
 
-**Input.** One quoted argument. Tokens are separated by spaces or tabs.
+**Input.** One quoted argument. Tokens are separated by any whitespace
+(spaces, tabs, newlines...).
 Numbers are single digits, optionally negative (`-9` to `9`). Operators:
 `+ - * /` (integer division).
 
@@ -92,6 +97,10 @@ Numbers are single digits, optionally negative (`-9` to `9`). Operators:
 - Tokens are read with `std::istringstream`, then pushed on a
   `std::stack<int, std::list<int> >`. `std::list` keeps `std::deque`, the
   default, free for ex02.
+- The stack is local to `calculate`, which is `const`: the class holds no
+  state, so each call starts from an empty stack.
+- A blank argument is detected with `std::isspace`, the same whitespace rule
+  as the tokenizer.
 - Each operator pops the right operand first, then the left one.
 - Operations are computed in `long`, then checked against the `int` limits
   (assumes an 8-byte `long`, as on 64-bit Linux and macOS).
