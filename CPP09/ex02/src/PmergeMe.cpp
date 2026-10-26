@@ -43,11 +43,21 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 
 PmergeMe::~PmergeMe() {}
 
+static double	elapsedUs(const timespec &start)
+{
+	timespec	end;
+
+	clock_gettime(CLOCK_MONOTONIC, &end);
+	return ((end.tv_sec - start.tv_sec) * 1000000.0
+		+ (end.tv_nsec - start.tv_nsec) / 1000.0);
+}
+
 void	PmergeMe::vectorSort()
 {
-	std::clock_t			start = std::clock();
+	timespec				start;
 	std::vector<Element>	vec;
 
+	clock_gettime(CLOCK_MONOTONIC, &start);
 	_comparison = 0;
 	for (size_t i = 0; i < _values.size(); i++)
 	{
@@ -60,14 +70,15 @@ void	PmergeMe::vectorSort()
 	mergeInsert(vec);
 	for (size_t i = 0; i < _values.size(); i++)
 		_vec.push_back(vec[i].value);
-	_timeVec = static_cast<double>(std::clock() - start) * 1000000 / CLOCKS_PER_SEC;
+	_timeVec = elapsedUs(start);
 }
 
 void	PmergeMe::dequeSort()
 {
-	std::clock_t		start = std::clock();
+	timespec			start;
 	std::deque<Element>	deq;
 
+	clock_gettime(CLOCK_MONOTONIC, &start);
 	_comparison = 0;
 	for (size_t i = 0; i < _values.size(); i++)
 	{
@@ -80,7 +91,7 @@ void	PmergeMe::dequeSort()
 	mergeInsert(deq);
 	for (size_t i = 0; i < _values.size(); i++)
 		_deq.push_back(deq[i].value);
-	_timeDeq = static_cast<double>(std::clock() - start) * 1000000 / CLOCKS_PER_SEC;
+	_timeDeq = elapsedUs(start);
 }
 
 PmergeMe::UsageError::UsageError()
@@ -134,7 +145,7 @@ void	PmergeMe::printInfo() const
 {
 	cout << STR_BEF << toString(_values) << endl;
 	cout << STR_AFT << toString(_vec) << endl;
-	cout << std::fixed << std::setprecision(5);
+	cout << std::fixed << std::setprecision(3);
 	cout << STR_PROCESS << _vec.size() << STR_ELEM << "std::vector : " << _timeVec << STR_UNIT << endl;
 	cout << STR_PROCESS << _deq.size() << STR_ELEM << "std::deque : " << _timeDeq << STR_UNIT << endl;
 }

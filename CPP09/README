@@ -121,8 +121,8 @@ Sorts a sequence of positive integers with the Ford-Johnson algorithm
 $> ./PmergeMe 3 5 9 7 4
 Before: 3 5 9 7 4
 After: 3 4 5 7 9
-Time to process a range of 5 elements with std::vector : 24.00000 us
-Time to process a range of 5 elements with std::deque : 28.00000 us
+Time to process a range of 5 elements with std::vector : 22.354 us
+Time to process a range of 5 elements with std::deque : 26.317 us
 $> ./PmergeMe -1 2
 Error: invalid number "-1"
 ```
@@ -161,8 +161,12 @@ greater than `0` and at most `LONG_MAX`. Duplicates are accepted and kept.
   `jacobsthalOrder` is shared: it only returns indices.
 - Elements carry their original index (`id`), so each small is found from its
   large in `partner[id]`, and the current position of a large by scanning ids.
-- Each sort is timed with `std::clock()` from the conversion of the input to
-  the copy of the result, as the subject asks.
+- Each sort is timed from the conversion of the input to the copy of the
+  result, as the subject asks, with `clock_gettime(CLOCK_MONOTONIC)`: elapsed
+  time to the nanosecond, shown in µs with 3 decimals. `std::clock()` only
+  ticks every microsecond, and `std::chrono` is C++11. `clock_gettime` is
+  POSIX, not C++98: the subject does not forbid it, as it forbids only
+  external libraries and a few C functions.
 - The deque sort still uses two `std::vector`s: the input strings and the
   Jacobsthal order list. Neither ever holds the data being sorted.
 - Two exception classes, `UsageError` and `InputError`, map to exit codes
@@ -172,7 +176,7 @@ greater than `0` and at most `LONG_MAX`. Duplicates are accepted and kept.
 
 | | `std::vector` | `std::deque` |
 |---|---|---|
-| time (µs) | 21 555 – 22 196 | 266 476 – 267 530 |
+| time (µs) | 21 599 – 22 901 | 267 125 – 268 729 |
 
 The deque is about 12 times slower here, and about 1.7 times slower when the
 same code is built with `-O2`: indexing a deque goes through a table of blocks,
