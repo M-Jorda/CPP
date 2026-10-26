@@ -121,8 +121,8 @@ Sorts a sequence of positive integers with the Ford-Johnson algorithm
 $> ./PmergeMe 3 5 9 7 4
 Before: 3 5 9 7 4
 After: 3 4 5 7 9
-Time to process a range of 5 elements with std::vector : 22.354 us
-Time to process a range of 5 elements with std::deque : 26.317 us
+Time to process a range of 5 elements with std::vector : 4.594 us
+Time to process a range of 5 elements with std::deque : 10.367 us
 $> ./PmergeMe -1 2
 Error: invalid number "-1"
 ```
@@ -172,17 +172,22 @@ greater than `0` and at most `LONG_MAX`. Duplicates are accepted and kept.
 - Two exception classes, `UsageError` and `InputError`, map to exit codes
   `2` and `1`.
 
-**Measures** (3000 random numbers, WSL2, 5 runs, Makefile flags without `-O`).
+**Measures** (3000 random numbers, WSL2, 5 runs).
 
-| | `std::vector` | `std::deque` |
+| Flags | `std::vector` (µs) | `std::deque` (µs) |
 |---|---|---|
-| time (µs) | 21 599 – 22 901 | 267 125 – 268 729 |
+| Makefile, with `-O2` | 3 415 – 3 882 | 5 852 – 5 910 |
+| same, without `-O` | 21 599 – 22 901 | 267 125 – 268 729 |
 
-The deque is about 12 times slower here, and about 1.7 times slower when the
-same code is built with `-O2`: indexing a deque goes through a table of blocks,
-and inserting in the middle moves elements one by one. Without optimisation,
-each of those steps stays a function call. The vector is always sorted first
-and pays the first allocations; this is not corrected.
+The Makefile builds with `-O2`: timings without optimisation do not measure
+the containers but the compiler's literal translation. The subject imposes
+`-Wall -Wextra -Werror` and does not forbid adding flags. Without `-O`, every
+`chain[pos]` on a deque stays a function call that looks up the block of the
+element; `-O2` inlines it, and the deque goes from 12 to about 1.7 times
+slower than the vector. It stays slower: indexing a deque goes through a
+table of blocks, and inserting in the middle moves elements one by one. The
+vector is always sorted first and pays the first allocations; this is not
+corrected.
 
 Maximum number of comparisons over 1000 random inputs: 7, 16, 26, 30 and 66
 for 5, 8, 11, 12 and 21 numbers — exactly Knuth's bound F(n), on both

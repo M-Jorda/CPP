@@ -1,7 +1,7 @@
 NAME		= PmergeMe
 
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -O2
 
 INCLUDES	= -Iinclude
 HEADERS		= include/PmergeMe.hpp
