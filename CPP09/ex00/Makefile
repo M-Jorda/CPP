@@ -8,6 +8,8 @@ INCLUDES	= -I. -Iinclude
 SRC_DIR		= src/
 SRCS		= main.cpp $(SRC_DIR)BitcoinExchange.cpp
 
+HEADERS		= include/BitcoinExchange.hpp
+
 OBJ_DIR		= obj
 OBJS		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
@@ -16,7 +18,7 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 			$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: %.cpp
+$(OBJ_DIR)/%.o: %.cpp $(HEADERS)
 			mkdir -p $(OBJ_DIR)/$(SRC_DIR)
 			$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
