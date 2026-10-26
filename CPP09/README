@@ -7,7 +7,7 @@ container used in one exercise cannot be reused in the following ones.
 |---|---|---|---|
 | ex00 | `btc` | Bitcoin exchange rate lookup | `std::map`, `std::set` |
 | ex01 | `RPN` | Reverse Polish Notation calculator | `std::stack` on `std::list` |
-| ex02 | `PmergeMe` | Merge-insertion sort | to be documented |
+| ex02 | `PmergeMe` | Merge-insertion sort | `std::vector`, `std::deque` |
 
 ---
 
@@ -48,3 +48,78 @@ Numbers are single digits, optionally negative (`-9` to `9`). Operators:
   (assumes an 8-byte `long`, as on 64-bit Linux and macOS).
 - Two exception classes, `UsageError` and `ExpressionError`, map to exit
   codes `2` and `1`.
+
+---
+
+## ex02 — PmergeMe
+
+Sorts a sequence of positive integers with the Ford-Johnson algorithm
+(merge-insertion, Knuth, *The Art of Computer Programming* vol. 3), once on a
+`std::vector` and once on a `std::deque`, and times both.
+
+```sh
+$> ./PmergeMe 3 5 9 7 4
+Before: 3 5 9 7 4
+After: 3 4 5 7 9
+Time to process a range of 5 elements with std::vector : 24.00000 us
+Time to process a range of 5 elements with std::deque : 28.00000 us
+$> ./PmergeMe -1 2
+Error: invalid number "-1"
+```
+
+**Input.** One or more arguments; each one may hold several numbers separated
+by spaces (`"3 1 2"` works). A number is digits with an optional leading `+`,
+greater than `0` and at most `LONG_MAX`. Duplicates are accepted and kept.
+`Before:` shows the numbers as parsed (`+5` is shown as `5`).
+
+**Errors.** Written to the standard error, prefixed with `Error: `.
+
+| Exit code | Cause |
+|---|---|
+| `0` | success, the four lines on the standard output |
+| `1` | not a number, `0`, or out of the `long` range |
+| `2` | wrong usage: no argument, or only empty / blank arguments |
+
+**Algorithm.**
+
+1. Pair the numbers and order each pair: one comparison per pair. An odd
+   number left over is kept aside (the straggler).
+2. Sort the larger element of each pair recursively, with the same algorithm.
+3. Build the main chain: the partner of the smallest large, then all the larges.
+4. Insert the other smalls, and the straggler last, in the Jacobsthal order
+   (`3 2, 5 4, 11 10 … 6, …`, each group in decreasing order). Each small is
+   searched by binary search only up to the current position of its large,
+   so every search runs in a zone of `2^k - 1` elements: exactly `k`
+   comparisons.
+
+**Design.**
+
+- `main` checks the arguments; the `PmergeMe` class converts, sorts, times and
+  prints.
+- One implementation per container, as overloads (`mergeInsert`, `makePairs`,
+  `buildChain`, `binaryInsert`) — no template, as the subject advises.
+  `jacobsthalOrder` is shared: it only returns indices.
+- Elements carry their original index (`id`), so each small is found from its
+  large in `partner[id]`, and the current position of a large by scanning ids.
+- Each sort is timed with `std::clock()` from the conversion of the input to
+  the copy of the result, as the subject asks.
+- The deque sort still uses two `std::vector`s: the input strings and the
+  Jacobsthal order list. Neither ever holds the data being sorted.
+- Two exception classes, `UsageError` and `InputError`, map to exit codes
+  `2` and `1`.
+
+**Measures** (3000 random numbers, WSL2, 5 runs, Makefile flags without `-O`).
+
+| | `std::vector` | `std::deque` |
+|---|---|---|
+| time (µs) | 21 555 – 22 196 | 266 476 – 267 530 |
+
+The deque is about 12 times slower here, and about 1.7 times slower when the
+same code is built with `-O2`: indexing a deque goes through a table of blocks,
+and inserting in the middle moves elements one by one. Without optimisation,
+each of those steps stays a function call. The vector is always sorted first
+and pays the first allocations; this is not corrected.
+
+Maximum number of comparisons over 1000 random inputs: 7, 16, 26, 30 and 66
+for 5, 8, 11, 12 and 21 numbers — exactly Knuth's bound F(n), on both
+containers.
