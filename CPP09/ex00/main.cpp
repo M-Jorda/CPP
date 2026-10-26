@@ -1,7 +1,6 @@
 #include "BitcoinExchange.hpp"
 
 using std::cout;
-using std::cerr;
 using std::endl;
 
 int	main(int argc, char **argv)
@@ -51,7 +50,7 @@ int	main(int argc, char **argv)
 			}
 			catch(const std::exception& e)
 			{
-				cerr << e.what() << '\n';
+				cout << e.what() << '\n';
 			}
 		}
 		if (file.bad())
@@ -59,7 +58,7 @@ int	main(int argc, char **argv)
 	}
 	catch(const std::exception& e)
 	{
-		cerr << e.what() << '\n';
+		cout << e.what() << '\n';
 		return (1);
 	}
 }

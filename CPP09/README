@@ -40,7 +40,8 @@ integer or decimal, between `0` and `1000`.
 the `date,exchange_rate` header; every line must hold a valid date and a
 positive rate, and it cannot be empty.
 
-**Errors.** Written to the standard error, prefixed with `Error: `. A bad
+**Errors.** Written to the standard output, as the subject's general rules ask
+when an exercise does not say otherwise, prefixed with `Error: `. A bad
 input line prints its error and the program goes on with the next one.
 Without argument, the message is the subject's `could not open file.`; with
 more than one, a usage message.
