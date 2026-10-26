@@ -139,7 +139,8 @@ class BitcoinExchange
 
 		// Read the database into _rates. The first line must be the
 		// "date,exchange_rate" header; each other line a valid date and a
-		// positive rate. Throws InvDB, InvDBLine or EmptyDB.
+		// positive rate. Empty lines are skipped.
+		// Throws InvDB, InvDBLine or EmptyDB.
 		// @param path  path of the database
 		void	_loadDb(std::string const &path);
 };

@@ -38,7 +38,8 @@ integer or decimal, between `0` and `1000`.
 
 **Database.** `data.csv`, read from the current directory. It must start with
 the `date,exchange_rate` header; every line must hold a valid date and a
-positive rate, and it cannot be empty.
+positive rate, and it cannot be empty. Empty lines are skipped (an editor
+often adds one at the end of the file).
 
 **Errors.** Written to the standard output, as the subject's general rules ask
 when an exercise does not say otherwise, prefixed with `Error: `. A bad

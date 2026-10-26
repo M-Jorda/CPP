@@ -180,6 +180,8 @@ void	BitcoinExchange::_loadDb(std::string const &path)
 
 	while (std::getline(file, line))
 	{
+		if (line.empty())
+			continue;
 		size_t		pos = line.find(",");
 		if (pos == std::string::npos)
 			throw BitcoinExchange::InvDBLine(line);
