@@ -3,6 +3,8 @@
 #include <sstream>
 #include <algorithm>
 #include <cstdlib>
+#include <ctime>
+#include <iomanip>
 
 #define ERRUSAGE	"usage: ./PmergeMe <positive integers>"
 #define INPUSAGE	"input error"
@@ -10,6 +12,7 @@
 #define STR_AFT		"After: "
 #define STR_PROCESS	"Time to process a range of "
 #define STR_ELEM	" elements with "
+#define STR_UNIT	" us"
 
 using	std::cout;
 using	std::endl;
@@ -42,6 +45,7 @@ PmergeMe::~PmergeMe() {}
 
 void	PmergeMe::vectorSort()
 {
+	std::clock_t			start = std::clock();
 	std::vector<Element>	vec;
 
 	_comparison = 0;
@@ -56,10 +60,12 @@ void	PmergeMe::vectorSort()
 	mergeInsert(vec);
 	for (size_t i = 0; i < _values.size(); i++)
 		_vec.push_back(vec[i].value);
+	_timeVec = static_cast<double>(std::clock() - start) * 1000000 / CLOCKS_PER_SEC;
 }
 
 void	PmergeMe::dequeSort()
 {
+	std::clock_t		start = std::clock();
 	std::deque<Element>	deq;
 
 	_comparison = 0;
@@ -74,6 +80,7 @@ void	PmergeMe::dequeSort()
 	mergeInsert(deq);
 	for (size_t i = 0; i < _values.size(); i++)
 		_deq.push_back(deq[i].value);
+	_timeDeq = static_cast<double>(std::clock() - start) * 1000000 / CLOCKS_PER_SEC;
 }
 
 PmergeMe::UsageError::UsageError()
@@ -127,8 +134,9 @@ void	PmergeMe::printInfo() const
 {
 	cout << STR_BEF << toString(_values) << endl;
 	cout << STR_AFT << toString(_vec) << endl;
-	cout << STR_PROCESS << _vec.size() << STR_ELEM << "std::vector : " << _timeVec << endl;
-	cout << STR_PROCESS << _deq.size() << STR_ELEM << "std::deque : " << _timeDeq << endl;
+	cout << std::fixed << std::setprecision(5);
+	cout << STR_PROCESS << _vec.size() << STR_ELEM << "std::vector : " << _timeVec << STR_UNIT << endl;
+	cout << STR_PROCESS << _deq.size() << STR_ELEM << "std::deque : " << _timeDeq << STR_UNIT << endl;
 }
 
 bool	PmergeMe::lessThan(const Element &a, const Element &b)
