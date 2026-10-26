@@ -52,6 +52,8 @@ int	main(int argc, char **argv)
 				cerr << e.what() << '\n';
 			}
 		}
+		if (file.bad())
+			throw (BitcoinExchange::InvFile());
 	}
 	catch(const std::exception& e)
 	{

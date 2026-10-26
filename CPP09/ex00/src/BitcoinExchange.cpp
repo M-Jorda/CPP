@@ -168,6 +168,8 @@ void	BitcoinExchange::_loadDb(std::string const &path)
 
 	std::string	line;
 	std::getline(file, line);
+	if (file.bad())
+		throw BitcoinExchange::InvDB();
 	if (line != "date,exchange_rate")
 		throw BitcoinExchange::InvDBLine(line);
 
