@@ -60,7 +60,20 @@ void	PmergeMe::vectorSort()
 
 void	PmergeMe::dequeSort()
 {
+	std::deque<Element>	deq;
 
+	_comparison = 0;
+	for (size_t i = 0; i < _values.size(); i++)
+	{
+		Element				elem;
+
+		elem.value = std::strtol(_values[i].c_str(), NULL, 10);
+		elem.id = i;
+		deq.push_back(elem);
+	}
+	mergeInsert(deq);
+	for (size_t i = 0; i < _values.size(); i++)
+		_deq.push_back(deq[i].value);
 }
 
 PmergeMe::UsageError::UsageError()
@@ -140,8 +153,41 @@ void	PmergeMe::binaryInsert(std::vector<Element> &chain, const Element &elem,
 	chain.insert(chain.begin() + low, elem);
 }
 
+void	PmergeMe::binaryInsert(std::deque<Element> &chain, const Element &elem,
+		size_t high)
+{
+	size_t	low = 0;
+
+	while (low < high)
+	{
+		size_t	mid = (low + high) / 2;
+		if (lessThan(elem, chain[mid]))
+			high = mid;
+		else
+			low = mid + 1;
+	}
+	chain.insert(chain.begin() + low, elem);
+}
+
 void	PmergeMe::makePairs(std::vector<Element> &elems, std::vector<Element> &larges,
 		std::vector<Element> &partner)
+{
+	for (size_t i = 0; i < elems.size(); i += 2)
+	{
+		Element					large;
+		Element					small;
+
+		large = elems[i];
+		small = elems[i + 1];
+		if (lessThan(elems[i], elems[i + 1]))
+			std::swap(large, small);
+		larges.push_back(large);
+		partner[large.id] = small;
+	}
+}
+
+void	PmergeMe::makePairs(std::deque<Element> &elems, std::deque<Element> &larges,
+		std::deque<Element> &partner)
 {
 	for (size_t i = 0; i < elems.size(); i += 2)
 	{
@@ -203,6 +249,33 @@ std::vector<PmergeMe::Element>	PmergeMe::buildChain(std::vector<Element> &larges
 	return (chain);
 }
 
+std::deque<PmergeMe::Element>	PmergeMe::buildChain(std::deque<Element> &larges,
+		std::deque<Element> &partner, bool hasStraggler, const Element &odd)
+{
+	std::deque<Element>	chain;
+	std::vector<size_t>		order;
+	size_t					n = larges.size();
+
+	chain.push_back(partner[larges[0].id]);
+	for (size_t i = 0; i < n; i++)
+		chain.push_back(larges[i]);
+	order = jacobsthalOrder(hasStraggler ? n + 1 : n);
+	for (size_t i = 0; i < order.size(); i++)
+	{
+		size_t	k = order[i];
+
+		if (k == n)
+		{
+			binaryInsert(chain, odd, chain.size());
+			continue ;
+		}
+		size_t	pos = k + 1;
+		while (pos < chain.size() && chain[pos].id != larges[k].id)
+			pos++;
+		binaryInsert(chain, partner[larges[k].id], pos);
+	}
+	return (chain);
+}
 
 void	PmergeMe::mergeInsert(std::vector<Element> &elems)
 {
@@ -213,6 +286,30 @@ void	PmergeMe::mergeInsert(std::vector<Element> &elems)
 	std::vector<Element>	chain;
 
 	larges.reserve(elems.size() / 2);
+	if (elems.size() <= 1)
+		return ;
+	if ((elems.size() % 2) == 1)
+	{
+		odd = elems.back();
+		elems.pop_back();
+		hasStraggler = true;
+	}
+	else
+		hasStraggler = false;
+	makePairs(elems, larges, partner);
+	mergeInsert(larges);
+	chain = buildChain(larges, partner, hasStraggler, odd);
+	elems = chain;
+}
+
+void	PmergeMe::mergeInsert(std::deque<Element> &elems)
+{
+	std::deque<Element>	partner(_values.size());
+	std::deque<Element>	larges;
+	Element				odd;
+	bool				hasStraggler;
+	std::deque<Element>	chain;
+
 	if (elems.size() <= 1)
 		return ;
 	if ((elems.size() % 2) == 1)
