@@ -8,14 +8,14 @@
 
 RPN::RPN() {}
 
-RPN::RPN(const RPN& other) : _stack(other._stack) {}
+RPN::RPN(const RPN& other)
+{
+	(void)other;
+}
 
 RPN&	RPN::operator=(const RPN& other)
 {
-	if (this != &other)
-	{
-		_stack = other._stack;
-	}
+	(void)other;
 	return (*this);
 }
 
@@ -77,8 +77,8 @@ static void	applyOperator(RPN::Stack &stack, std::string const &token)
 
 static bool	isNumber(std::string const &token)
 {
-	if ((token.size() == 2 && token[0] == '-' && std::isdigit((unsigned char) token[1])) 
-			|| (token.size() == 1 && std::isdigit((unsigned char) token[0])))
+	if ((token.size() == 2 && token[0] == '-' && std::isdigit(static_cast<unsigned char>(token[1])))
+			|| (token.size() == 1 && std::isdigit(static_cast<unsigned char>(token[0]))))
 		return (true);
 	return (false);
 }
@@ -90,24 +90,23 @@ static bool	isOperator(std::string const &token)
 	return (false);
 }
 
-int	RPN::calculate(std::string const &str)
+int	RPN::calculate(std::string const &str) const
 {
-	while (!_stack.empty())
-		_stack.pop();
+	Stack				stack;
 	std::istringstream	iss(str);
 	std::string			token;
 	while (iss >> token)
 	{
 		if (isNumber(token))
-			pushNumber(_stack, token);
+			pushNumber(stack, token);
 		else if (isOperator(token))
-			applyOperator(_stack, token);
+			applyOperator(stack, token);
 		else
 			throw (ExpressionError("invalid token \"" + token + "\""));
 	}
-	if (_stack.size() != 1)
+	if (stack.size() != 1)
 		throw (ExpressionError(INVEXPR));
-	return (_stack.top());
+	return (stack.top());
 }
 
 RPN::UsageError::UsageError() : std::runtime_error("usage: ./RPN \"<expression>\"") {}

@@ -14,7 +14,7 @@ class	RPN
 		RPN &operator=(const RPN &other);
 		~RPN();
 
-		int	calculate(std::string const &str);
+		int	calculate(std::string const &str) const;
 
 		class	UsageError : public std::runtime_error
 		{
@@ -37,9 +37,6 @@ class	RPN
 		};
 
 		typedef std::stack<int, std::list<int> > Stack;
-
-	private:
-		Stack	_stack;
 };
 
 #endif

@@ -1,16 +1,17 @@
 #include "RPN.hpp"
 #include <iostream>
+#include <cctype>
 
 using std::cout;
 using std::cerr;
 using std::endl;
 
-bool	isSpace(char *av)
+static bool	isSpace(char *av)
 {
 	int	i = 0;
 
 	while (av[i])
-		if (av[i] == ' ' || av[i] == '\t')
+		if (std::isspace(static_cast<unsigned char>(av[i])))
 			i++;
 		else
 			return (false);
