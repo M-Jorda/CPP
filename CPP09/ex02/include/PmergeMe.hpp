@@ -61,7 +61,9 @@ class	PmergeMe
 		void					makePairs(std::vector<Element> &elems,
 					std::vector<Element> &larges, std::vector<Element> &partner);
 		std::vector<Element>	buildChain(std::vector<Element> &larges,
-					std::vector<Element> &partner);
+					std::vector<Element> &partner, bool hasStraggler,
+					const Element &odd);
+		static std::vector<size_t>	jacobsthalOrder(size_t n);
 		void					binaryInsert(std::vector<Element> &chain,
 					const Element &elem, size_t high);
 };

@@ -44,6 +44,7 @@ void	PmergeMe::vectorSort()
 {
 	std::vector<Element>	vec;
 
+	_comparison = 0;
 	for (size_t i = 0; i < _values.size(); i++)
 	{
 		Element				elem;
@@ -156,17 +157,48 @@ void	PmergeMe::makePairs(std::vector<Element> &elems, std::vector<Element> &larg
 	}
 }
 
+std::vector<size_t>	PmergeMe::jacobsthalOrder(size_t n)
+{
+	std::vector<size_t>	order;
+	size_t				prev = 1;
+	size_t				cur = 3;
+
+	while (prev < n)
+	{
+		size_t	next = cur + 2 * prev;
+
+		for (size_t i = std::min(cur, n); i > prev; i--)
+			order.push_back(i - 1);
+		prev = cur;
+		cur = next;
+	}
+	return (order);
+}
+
 std::vector<PmergeMe::Element>	PmergeMe::buildChain(std::vector<Element> &larges,
-		std::vector<Element> &partner)
+		std::vector<Element> &partner, bool hasStraggler, const Element &odd)
 {
 	std::vector<Element>	chain;
+	std::vector<size_t>		order;
+	size_t					n = larges.size();
 
 	chain.push_back(partner[larges[0].id]);
-	chain.push_back(larges[0]);
-	for (size_t i = 1; i < larges.size(); i++)
-	{
+	for (size_t i = 0; i < n; i++)
 		chain.push_back(larges[i]);
-		binaryInsert(chain, partner[larges[i].id], chain.size());
+	order = jacobsthalOrder(hasStraggler ? n + 1 : n);
+	for (size_t i = 0; i < order.size(); i++)
+	{
+		size_t	k = order[i];
+
+		if (k == n)
+		{
+			binaryInsert(chain, odd, chain.size());
+			continue ;
+		}
+		size_t	pos = k + 1;
+		while (pos < chain.size() && chain[pos].id != larges[k].id)
+			pos++;
+		binaryInsert(chain, partner[larges[k].id], pos);
 	}
 	return (chain);
 }
@@ -193,8 +225,6 @@ void	PmergeMe::mergeInsert(std::vector<Element> &elems)
 		hasStraggler = false;
 	makePairs(elems, larges, partner);
 	mergeInsert(larges);
-	chain = buildChain(larges, partner);
-	if (hasStraggler)
-		binaryInsert(chain, odd, chain.size());
+	chain = buildChain(larges, partner, hasStraggler, odd);
 	elems = chain;
 }
