@@ -36,6 +36,12 @@ class BitcoinExchange
 				virtual const char	*what() const throw();
 		};
 
+		class InvUsage : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
+		};
+
 		class InvDB : public std::exception
 		{
 			public:

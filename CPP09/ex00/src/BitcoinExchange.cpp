@@ -107,6 +107,11 @@ const char	*BitcoinExchange::InvFile::what() const throw()
 	return ("Error: could not open file.");
 }
 
+const char	*BitcoinExchange::InvUsage::what() const throw()
+{
+	return ("Error: usage: ./btc <file>");
+}
+
 const char	*BitcoinExchange::InvDB::what() const throw()
 {
 	return ("Error: could not open database.");

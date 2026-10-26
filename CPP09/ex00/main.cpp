@@ -8,8 +8,10 @@ int	main(int argc, char **argv)
 {
 	try
 	{
-		if (argc != 2)
+		if (argc < 2)
 			throw (BitcoinExchange::InvFile());
+		if (argc > 2)
+			throw (BitcoinExchange::InvUsage());
 		BitcoinExchange btc("data.csv");
 		std::ifstream	file(argv[1]);
 		if (!file.is_open())
