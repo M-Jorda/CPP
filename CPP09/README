@@ -5,9 +5,58 @@ container used in one exercise cannot be reused in the following ones.
 
 | Exercise | Program | Topic | Containers |
 |---|---|---|---|
-| ex00 | `btc` | Bitcoin exchange rate lookup | `std::map`, `std::set` |
+| ex00 | `btc` | Bitcoin exchange rate lookup | `std::map` |
 | ex01 | `RPN` | Reverse Polish Notation calculator | `std::stack` on `std::list` |
 | ex02 | `PmergeMe` | Merge-insertion sort | `std::vector`, `std::deque` |
+
+---
+
+## ex00 — Bitcoin Exchange
+
+Multiplies each amount of an input file by the bitcoin exchange rate of its
+date, read from the database `data.csv`.
+
+```sh
+$> ./btc test.csv
+2011-01-03 => 3 = 0.9
+2011-01-03 => 1.2 = 0.36
+2011-01-09 => 1 = 0.32
+Error: not a positive number.
+Error: bad input => 2001-42-42
+2012-01-11 => 1 = 7.1
+Error: too large a number.
+$> ./btc
+Error: could not open file.
+```
+
+**Input.** One argument: a file with one `date | value` line per entry. A
+`date | value` header on the first line is skipped. The date is `YYYY-MM-DD`
+and must exist in the calendar (leap years included). The value is a number,
+integer or decimal, between `0` and `1000`.
+
+**Database.** `data.csv`, read from the current directory. It must start with
+the `date,exchange_rate` header; every line must hold a valid date and a
+positive rate, and it cannot be empty.
+
+**Errors.** Written to the standard error, prefixed with `Error: `. A bad
+input line prints its error and the program goes on with the next one.
+
+| Exit code | Cause |
+|---|---|
+| `0` | input file read to the end, even if some lines were invalid |
+| `1` | wrong usage, input file or database missing, bad database line, empty database |
+
+**Design.**
+
+- The database is stored in a `std::map<std::string, double>`. Dates in
+  `YYYY-MM-DD` format sort the same way as strings and as dates, so the key
+  can stay a string.
+- `getRate` uses `lower_bound`: if the date is not in the database, the closest
+  lower date is used. A date before the first one of the database is an error.
+- The class loads the database and checks dates and values; `main` reads the
+  input file and prints.
+- One exception class per error. Line errors are caught inside the loop,
+  file and database errors outside of it.
 
 ---
 
